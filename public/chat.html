@@ -1,0 +1,324 @@
+<html>
+
+<head>
+  <title>CSE Assistant 1.1.0</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+  <link rel="apple-touch-icon" sizes="180x180" href="icon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="icon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="icon/favicon-16x16.png">
+  <link rel="manifest" href="icon/site.webmanifest">
+  <link rel="mask-icon" href="icon/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#b91d47">
+  <meta name="theme-color" content="#ffffff">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js"></script>
+  <script src="https://cdn.rawgit.com/showdownjs/showdown/1.7.4/dist/showdown.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.7.0/tiny-slider.css">
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/chatui.css" />
+  <meta http-equiv="Content-Security-Policy" >
+
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+</head>
+
+<body>
+  <div class="main-container-background h-100">
+    <!-- <canvas class="d-none d-sm-inline-block col-sm-5 col-md-6 col-lg-7 p-0" id="canvas-animation"></canvas> -->
+     <!-- <div id="background-img"></div> -->
+    <div class="row p-0 h-100 row-wrapper">
+    <!-- <div class="canvas-animation"></div> -->
+
+      <div class="d-none d-sm-inline-block col-sm-5 col-md-6 col-lg-7 p-0">
+        <!-- <div style="background-color: aliceblue;"> -->
+      <!-- <div class="canvas-animation"></div> -->
+      <!-- <div class="cards"> -->
+          <div class="card-layout card-box-1">
+            <!-- <div class="cnt"> -->
+              <div id="title-project">
+                Dự án 
+              </div>
+              <div id="title-name">
+                "Chatbot tư vấn hoạt động xã hội cho học sinh - sinh viên"
+              </div>
+              
+              
+            <!-- </div> -->
+            
+          </div>
+          <div style="text-align: center;">
+            <a href="https://docs.google.com/document/d/1S03-e24_Z-w6sHQ0AlTMauyE1xProtEucHxn9MU4Mek/edit" target="_blank">Hướng dẫn sử dụng nhanh</a>
+            
+          </div>
+          <div style="text-align: center;">
+            <a href="https://docs.google.com/forms/d/1mt95jaWNynJA4ap_8JhLxE6nR0UDejVfRGZeS9AlJ5k/edit#responses" target="_blank">Góp ý đánh giá (nhóm sẽ gửi tặng một món quà nhỏ để cảm ơn các bạn ^^)</a>
+          </div>
+         <!-- slider start -->
+          <!-- <div class="card-layout card-box-3"> -->
+            <!-- <div class="slideshow-container"> -->
+              <!-- <div class="slide-background"> -->
+                <!-- <img src="./background_waterdrop.png" style="webkit-filter: blur(3px);height: 100%"> -->
+              <!-- </div> -->
+ 
+              <!-- <div class="mySlides fade-slide"> -->
+                
+                <!-- <img src="./images/slide_college_1.png" style="width:100%; height: 100%;border-radius: 10px;"> -->
+                <!-- <div class="text">Caption Text</div> -->
+              <!-- </div> -->
+
+              <!-- <div class="mySlides fade-slide"> -->
+                
+                <!-- <img src="./images/slide_3_shadow.png" style="width:100%; height: 100%; border-radius: 10px;"> -->
+                <!-- <div class="text">Caption Two</div> -->
+              <!-- </div> -->
+
+              <!-- <div class="mySlides fade-slide"> -->
+                
+                <!-- <img src="./images/slide_4.png" style="width:100%; height: 100%; border-radius: 10px;"> -->
+                <!-- <div class="text">Caption Three</div> -->
+              <!-- </div> -->
+              <!-- <div class="mySlides fade-slide"> -->
+                
+                <!-- <img src="./images/slide_5.png" style="width:100%; height: 100%; border-radius: 10px;"> -->
+                <!-- <div class="text">Caption Three</div> -->
+              <!-- </div> -->
+
+              <!-- Next and previous buttons -->
+              <!-- <a class="prev" onclick="plusSlides(-1)">&#10094;</a> -->
+              <!-- <a class="next" onclick="plusSlides(1)">&#10095;</a> -->
+            <!-- </div> -->
+            
+
+            <!-- The dots/circles -->
+            <!-- <div style="text-align:center; z-index: 10;"> -->
+              <!-- <span class="dot" onclick="selectSlide(1)"></span> -->
+              <!-- <span class="dot" onclick="selectSlide(2)"></span> -->
+              <!-- <span class="dot" onclick="selectSlide(3)"></span> -->
+              <!-- <span class="dot" onclick="selectSlide(4)"></span> -->
+
+            <!-- </div> -->
+
+
+          <!-- </div> -->
+          
+       
+        
+<!--  slider end-->
+        <div class="cnt-name" id="cnt-name">
+            
+        </div>
+        <!-- <div class="animated_pointer">>></div> -->
+        <!-- <div class="graph_name" id="switch_btn">Conceptual Graph</div> -->
+        
+        
+      </div>
+      <div class="col-xs-8 col-sm-7 col-md-6 col-lg-5">
+        <div class="wrapper">
+
+          <div id="message_window">
+            <div class="header main-elements">
+              <div>
+                <img src="cse.png" class="avt">
+              </div>
+              <div id="user-id" class="name"><span style="width: 2vw; overflow: hidden;">CSE Assistant 1.1.0</span></div>
+              
+            </div>
+            <div class="disconnected main-elements" id="disconnected">
+              Disconnected... reconnecting!
+            </div>
+            <div class="offline main-elements">
+              Offline! Reload to reconnect.
+            </div>
+            <section class="message-wrapper">
+              <!-- <div id="feedback-panel">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSe7EXwLojON1DqocOU9RDkw1RILjK9jcCeXxZsLgqi7162NCw/viewform">Gửi Feedback</a>
+              </div> -->
+              <div id="logo-wrapper">
+                <img src="./hcmuttrans.png" id="background-logo">
+
+              </div>
+              <div class="main-elements" id="message_list">
+                <div id="message_template">
+
+                  <div class="message {{message.type}}">
+                    {{#if message.isTyping}}
+                    <div class="wrapper-typing-indicator">
+                    <div class="typing-indicator-custom"><div class="iball"></div><div class="iball"></div><div class="iball"></div><div class="iball"></div></div>
+                    </div>
+                    {{/if}}
+                    {{{message.html}}}
+
+                    {{#if message.open_link}}
+                    <a href="{{{message.open_link}}}" target="_blank"
+                      class="button_message">{{#if message.link_title}}{{message.link_title}}{{else}}{{message.open_link}}{{/if}}</a>
+                    {{/if}}
+                  </div>
+                </div>
+
+                <div id="message_rating_template">
+                  <div class="rating-mask" id="rating-mask-{{{message.ratingId}}}">
+                    <svg style="display: none;">
+                      <symbol id="star" viewBox="0 0 98 92">
+                        <title>star</title>
+                        <path stroke='#000' stroke-width='0'
+                          d='M49 73.5L22.55 87.406l5.05-29.453-21.398-20.86 29.573-4.296L49 6l13.225 26.797 29.573 4.297-21.4 20.86 5.052 29.452z'
+                          fill-rule='evenodd' />
+                    </svg>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="main-elements" id="message_slider_template">
+                <div class="carousel-mask" id="mask-{{{message.resultSliderId}}}">
+                  <div class="carousel-items" id="wrapper-{{{message.resultSliderId}}}">
+                  </div>
+                </div>
+              </div>
+
+              <div class="main-elements" id="message_list_template">
+                <div class="list-mask" id="list-mask-{{{message.attrListId}}}">
+                </div>
+              </div>
+
+              <div class="main-elements" id="message_intent_template">
+                <div class="list-mask" id="intent-mask-{{{message.intentListId}}}">
+                </div>
+              </div>
+            </section>
+            <div id="message_replies">
+            </div>
+            <footer class="main-elements">
+              <form id="form_mesg" onsubmit="Botkit.send(Botkit.input.value, event)">
+                <input type="text" autocomplete="off" id="messenger_input" placeholder="Nhập tin nhắn ở đây"
+                  onkeyup="stoppedTyping()" />
+                
+              </form>
+              <div class="tool-bar">
+                <button id="record_btn" class="tool-bar-btn" title="Nhập bằng giọng nói">
+                  <div class="send record_icon">
+                    <svg class="svg-toolbar-icon" viewBox="0 0 20 20">
+                      <path stroke-width="12" id="svg_1" d="m10.403,15.231l0,2.035l2.827,0c0.223,0 0.403,0.181 0.403,0.404c0,0.223 -0.181,0.403 -0.403,0.403l-6.46,0c-0.223,0 -0.404,-0.181 -0.404,-0.403c0,-0.224 0.181,-0.404 0.404,-0.404l2.826,0l0,-2.035c-2.706,-0.207 -4.845,-2.473 -4.845,-5.231c0,-0.223 0.181,-0.403 0.404,-0.403s0.404,0.18 0.404,0.403c0,2.449 1.992,4.441 4.441,4.441c2.449,0 4.441,-1.992 4.441,-4.441c0,-0.223 0.182,-0.403 0.404,-0.403s0.403,0.18 0.403,0.403c0,2.758 -2.14,5.024 -4.845,5.231m2.623,-10.278l0,5.047c0,1.669 -1.357,3.027 -3.027,3.027s-3.027,-1.358 -3.027,-3.027l0,-5.047c0,-1.669 1.358,-3.028 3.028,-3.028s3.026,1.359 3.026,3.028m-0.87542,0c0.14084,0.0426 -1.06642,7.35746 -2.29142,7.35746s-2.08016,-8.58246 -2.08016,-7.35746l0,5.047c0,0.6125 -0.6841,-4.18461 0.19338,-5.89541c0.87748,-1.7108 3.73906,0.36893 4.35156,0.36893s-0.10294,6.75148 -0.10294,5.52648"/>
+                    </svg>
+
+                  </div>
+                </button>
+
+                <button id="latest_btn" class="tool-bar-btn" title="Hoạt động mới nhất" onclick="toggleLatestPanel()">
+                  <div class="send record_icon">
+
+                    <svg class="svg-toolbar-icon" viewBox="0 0 18 18">
+                      <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2H0z"/>
+                      <path fill-rule="evenodd" d="M0 3h16v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3zm6.5 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm4-1a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm2 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-8 2a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm2 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm4-1a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm2 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-8 2a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm2 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm4-1a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                    </svg>
+                  </div>
+                </button>
+                <button class="tool-bar-btn" type="submit" id="send_btn">
+                  <div class="send">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                      viewBox="0 0 23 23" xml:space="preserve" class="active svg-toolbar-icon" style="fill:var(--primary-color-disabled)"
+                      id="fill_btn">
+                      <path
+                        d="M22,11.7V12h-0.1c-0.1,1-17.7,9.5-18.8,9.1c-1.1-0.4,2.4-6.7,3-7.5C6.8,12.9,17.1,12,17.1,12H17c0,0,0-0.2,0-0.2c0,0,0,0,0,0c0-0.4-10.2-1-10.8-1.7c-0.6-0.7-4-7.1-3-7.5C4.3,2.1,22,10.5,22,11.7z">
+                      </path>
+                    </svg>
+                  </div>
+                </button>
+              </div>
+              
+              <div class="popup-panel" id="latest-popup-panel" tabindex="100">
+                <span>Hoạt động mới nhất</span>
+                <hr style="margin: 2px auto; width: 60%; background-color: lightgrey;">
+                <button class="tool-bar-btn" id="close_latest_panel_btn" onclick="toggleLatestPanel()">
+                  <svg class="svg-toolbar-icon" viewBox="0 0 20 20">
+                    <path style="fill:white;" d="M12.71,7.291c-0.15-0.15-0.393-0.15-0.542,0L10,9.458L7.833,7.291c-0.15-0.15-0.392-0.15-0.542,0c-0.149,0.149-0.149,0.392,0,0.541L9.458,10l-2.168,2.167c-0.149,0.15-0.149,0.393,0,0.542c0.15,0.149,0.392,0.149,0.542,0L10,10.542l2.168,2.167c0.149,0.149,0.392,0.149,0.542,0c0.148-0.149,0.148-0.392,0-0.542L10.542,10l2.168-2.168C12.858,7.683,12.858,7.44,12.71,7.291z M10,1.188c-4.867,0-8.812,3.946-8.812,8.812c0,4.867,3.945,8.812,8.812,8.812s8.812-3.945,8.812-8.812C18.812,5.133,14.867,1.188,10,1.188z M10,18.046c-4.444,0-8.046-3.603-8.046-8.046c0-4.444,3.603-8.046,8.046-8.046c4.443,0,8.046,3.602,8.046,8.046C18.046,14.443,14.443,18.046,10,18.046z"></path>
+                  </svg>  
+                </button>
+              </div>
+              
+            </footer>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+  <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script> -->
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.7.0/min/tiny-slider.js"></script>
+
+  <script type="text/javascript">
+    $("#messenger_input").focus();
+    function stoppedTyping() {
+      if (document.getElementById("messenger_input").value === "") {
+        $('#send_btn').attr("disabled", true);
+        $('#fill_btn').attr('style', "fill:var(--primary-color-disabled)");
+      } else {
+        $('#send_btn').attr("disabled", false);
+        $('#fill_btn').attr('style', "fill: var(--primary-color)");
+      }
+    }
+  </script>
+  <script src="leader-line.min.js"></script>
+  <script type="text/javascript"> 
+    // setTimeout(() => { $("#n1").hide() }, 6400)
+    
+
+    $(document).ready(function(){
+        $("#title-project").fadeIn(1000);
+        $("#title-name").slideDown(1000);
+      });
+    
+    // setTimeout(() => {
+    //       $(".card-layout").show();
+          
+    //     }, 500)
+    
+  </script>
+  <script src="https://unpkg.com/popmotion/dist/popmotion.global.min.js"></script>
+
+  <!-- <script type="module" src="client.js">
+   
+  </script> -->
+  
+   
+  </script>
+  <!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <!-- <script src="slide_show.js"></script> -->
+
+  <script src="typing_indicator.js"></script>
+  <script src="client.js"></script>
+
+
+  <!-- <script src="background_animation.js"></script> -->
+  <script src="suggest_question.js"></script>
+  <script src="latest_activities.js"></script>
+  <script>
+  
+
+  // $("#latest-popup-panel").focusout(function() {
+  //   toggleLatestPanel();
+  // });
+  </script>
+  <!-- <script type="text/javascript" src="../utils/jquery-3.4.1.min.js"></script> -->
+  <!-- <script src="setId.js" type="module"></script> -->
+
+</body>
+
+</html>

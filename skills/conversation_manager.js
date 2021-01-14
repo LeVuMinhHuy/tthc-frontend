@@ -3,28 +3,9 @@ request = require("request");
 sync = require('sync-request');
 
 var UserController = require("../utils/usercontroller.js")
-// const CONVERSATION_MANAGER_ENDPOINT = "http://127.0.0.1:8080/api/LT-conversation-manager"
 const CONVERSATION_MANAGER_ENDPOINT = "http://127.0.0.1:8080/api/cse-assistant-conversation-manager"
-// const CONVERSATION_MANAGER_ENDPOINT = "http://80.211.56.55/api/cse-assistant-conversation-manager"
-// const CONVERSATION_MANAGER_ENDPOINT = "http://127.0.0.1:5000/api/test_matchfound"
-// const CONVERSATION_MANAGER_ENDPOINT = "http://127.0.0.1:5000/api/test-noname"
-
-// const CONVERSATION_MANAGER_ENDPOINT = "http://127.0.0.1:5000/api/test_edit_inform_inform"
-// const CONVERSATION_MANAGER_ENDPOINT = "http://127.0.0.1:5000/api/test_edit_inform_inform"
-// const CONVERSATION_MANAGER_ENDPOINT = "http://127.0.0.1:5000/api/test_inform_empty"
-
-// const CONVERSATION_MANAGER_ENDPOINT = "http://127.0.0.1:5000/api/test_edit_inform_matchfound"
 
 
-const RATING_CONVERSATION_ENDPOINT = "http://127.0.0.1:8080/api/LT-save-rating-conversation"
-const IS_QUESTION_ENDPOINT = "http://127.0.0.1:8080/api/LT-conversation-manager/classify-message"
-const SAVE_MESSAGE_TO_DB = "http://127.0.0.1:8080/api/LT-conversation-manager/messages";
-const ATTR_LIST = ["interior_floor", "interior_room", "legal", "orientation", "position", "realestate_type", "surrounding_characteristics", "surrounding_name", "surrounding", "transaction_type"];
-const ENTITY_LIST = ["area", "location", "potential", "price", "addr_district"]
-const LOCATION_ATTR_LIST = ["addr_city", "addr_street", "addr_ward", "addr_district"]
-const AGREE_THRESHOLD = 0.5;
-const NUM_ASK_THRESHOLD = 1;
-const NUM_ASW_THRESHOLD = 3;
 var userController = new UserController();
 module.exports = function (controller) {
 
@@ -34,7 +15,7 @@ module.exports = function (controller) {
 
     var userMessageCount = {
     }
-    // var isGetInfor = false;
+
 
     var isRating = {};
     var star = {};
@@ -57,13 +38,6 @@ module.exports = function (controller) {
 
         bot.startConversation(message, function (err, convo) {
             var id = message.user
-            // console.log("id "+ id);
-
-            // document.getElementById("user-id").innerHTML = id;
-            // if (id) {
-            //     var delete_body = sync("DELETE", CONVERSATION_MANAGER_ENDPOINT + "?graph_id=" + id);
-            //     console.log("DELETE GRAPH CODE:" + delete_body.statusCode);
-            // }
             convo.say({
                 text: resp.hello,
             });
@@ -71,50 +45,6 @@ module.exports = function (controller) {
         });
     }
 
-    function continueConversation(bot, message) {
-
-        var id = message.user;
-        // console.log("id "+ id);
-        
-
-        var user = userController.searchSession(id);
-        if (user != null) {
-            console.log("welcome back-------------------------" + id);
-            
-            // refresh at getIntent
-            if (!user.getIntent) {
-                bot.reply(message, {
-                    text: resp.hello
-                });
-                // refresh at getInfor
-            } else if (!user.getInfor) {
-                bot.reply(message, {
-                    text: resp.ask_infor[Math.floor(Math.random() * resp.ask_infor.length)]
-                });
-                // refresh at confirm infor
-            } else {
-                var success = userController.deleteSession(id);
-                if (!success) {
-                    console.log("Error in delete function");
-                } else {
-                    console.log("Delete success");
-                }
-                bot.reply(message, {
-                    text: resp.hello
-                });
-
-            }
-
-        } else {
-            bot.startConversation(message, function (err, convo) {
-                // var id = message.user
-                // console.log(id)
-                convo.say({
-                    text: resp.hello,
-                });
-            });
-        }
-    }
     function restartConversation(bot, message) {
         var id = message.user
         if (isRating[id] && message.save) {
@@ -158,87 +88,9 @@ module.exports = function (controller) {
 
     }
 
-    function saveToDatabase(user, bot, message) {
-        temp = {
-            message: user.data.message,
-            intent: user.data.intent,
-            is_correct: user.data.is_correct,
-            user_id: message.user
-        }
-        console.log(temp);
-        request.post(CONVERSATION_MANAGER_ENDPOINT + "/messages", {
-            json: {
-                message: user.data.message,
-                intent: user.data.intent,
-                is_correct: user.data.is_correct,
-                user_id: message.user
-            }
-
-        }, (error, res, body) => {
-            if (error) {
-                console.log(error);
-                conversation[message.user].push("bot: " + resp.err);
-                bot.reply(message, {
-                    graph: {},
-                    text: "có lỗi xảy ra khi lưu vào database"
-                })
-                return
-            }
-
-            console.log(body);
-
-            bot.reply(message, {
-                text: resp.thank,
-                force_result: [
-                    {
-                        title: 'Bắt đầu hội thoại mới',
-                        payload: {
-                            'restart_conversation': true
-                        }
-                    }
-                ]
-            });
-            var success = userController.deleteSession(message.user);
-            if (!success) {
-                console.log("Error in delete function");
-            } else {
-                console.log("Delete success");
-            }
-            return;
-
-        });
-    }
-    function saveMessageToDatabase(user, bot, message) {
-        temp = {
-            message: user.data.message,
-            intent: user.data.intent,
-            user_id: message.user,
-            is_correct: false
-        }
-        console.log(temp);
-        request.post(SAVE_MESSAGE_TO_DB, {
-            json: temp
-
-        }, (error, res, body) => {
-            if (error) {
-                console.log(error);
-                conversation[message.user].push("bot: " + resp.err);
-                bot.reply(message, {
-                    graph: {},
-                    text: "có lỗi xảy ra khi lưu vào database"
-                })
-                return
-            }
-
-            console.log(body);
-
-            return;
-
-        });
-    }
     function handleDoneResponse(bot, message, body){
         bot.reply(message, {
-                                text: body.message + 'Vui lòng đánh giá giúp mình tại <a href="https://docs.google.com/forms/d/e/1FAIpQLSe7EXwLojON1DqocOU9RDkw1RILjK9jcCeXxZsLgqi7162NCw/viewform" target="_blank">đây</a> nhé! Cảm ơn bạn',
+                                text: resp.thank,
                                 intent: body.agent_action.intent
                             })
     }
@@ -677,7 +529,6 @@ module.exports = function (controller) {
         }
     }
     controller.on('hello', conductOnboarding);
-    controller.on('welcome_back', continueConversation);
     controller.on('message_received', callConversationManager);
 
 }

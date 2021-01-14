@@ -876,7 +876,7 @@ var Botkit = {
   //   return elements;
   // },
   setId: function(userId){
-    document.getElementById("user-id").innerHTML = "CSE Assistant Beta";
+    document.getElementById("user-id").innerHTML = "TTHC Chatbot";
   },
   boot: function (user) {
 
@@ -1227,7 +1227,7 @@ var Botkit = {
 };
 
 var setId = function(id){
-  document.getElementById("user-id").innerHTML = "CSE Assistant Beta";
+  document.getElementById("user-id").innerHTML = "TTHC Chatbot";
 };
 
 (function () {

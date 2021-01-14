@@ -1,4 +1,4 @@
-const GET_LATEST_API = 'http://34.87.121.62/api/cse-assistant-conversation-manager/latest-activities';
+const GET_LATEST_API = 'http://localhost:8080/api/cse-assistant-conversation-manager/latest-activities';
 var latestSpinner = null;
 var latestWrapper = null;
 var panel = $("#latest-popup-panel");

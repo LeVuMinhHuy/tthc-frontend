@@ -72,7 +72,7 @@
 }
 
 .main-container-background{
-	background-color: black;
+	background-color: white;
 	/*position: absolute;*/
 	/*width: 500px;
 	height: 500px;*/
@@ -330,7 +330,7 @@
 }
 .iball {
 
-  background: purple;
+  background: #3980c0;
   border-radius: 50%;
   margin-right: 3px;
   /*flex: 0 0 2px;*/
@@ -338,15 +338,6 @@
   height: 7px;
 
 }
-.iball:nth-child(2){
-    background: green;
-  }
-.iball:nth-child(3){
-    background: pink;
-  }
-.iball:nth-child(4){
-    background: blue;
-  }
 
 #suggest-loader-spinner {
   position: relative;

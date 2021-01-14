@@ -7,6 +7,7 @@ const CONVERSATION_MANAGER_ENDPOINT = "http://127.0.0.1:8080/api/cse-assistant-c
 
 
 var userController = new UserController();
+
 module.exports = function (controller) {
 
     var promiseBucket = {
@@ -26,6 +27,8 @@ module.exports = function (controller) {
     var previousNonameRound = 0;
     var currentRound = 0;
     var nonameStreak = 0;
+    var matchFound = false;
+
     function isEmpty(obj) {
         for (var key in obj) {
             if (obj.hasOwnProperty(key))
@@ -44,6 +47,15 @@ module.exports = function (controller) {
             userMessageCount[id] = 0;
         });
     }
+
+
+    function continueConversation(bot, message) {
+        bot.startConversation(message, function (err, convo) {
+            convo.say({
+                text: resp.hello,
+            });
+        });
+}
 
     function restartConversation(bot, message) {
         var id = message.user
@@ -267,17 +279,9 @@ module.exports = function (controller) {
         });
     }
     function callConversationManager(bot, message) {
-        
-        var isGetInfor = false;
 
         var id = message.user;
         var raw_mesg = message.text
-        var showCustomButton = false;
-        var force_show = false;
-        var remove_more = false;
-        var filter_attr = false;
-        var filter_all = false;
-        var isGetIntent = true;
 
         var user = userController.searchSession(id);
         if (user == null) {
@@ -291,48 +295,6 @@ module.exports = function (controller) {
                 conversation[message.user] = ["user: " + raw_mesg];
             }
         }
-        // if (message.rating_prop) {
-        //     console.log(message.rating_prop)
-        //     if (message.rating_prop.star) star[message.user] = message.rating_prop.star;
-        //     if (message.rating_prop.appropriate) appropriate[message.user] = message.rating_prop.appropriate;
-        //     if (message.rating_prop.catched_intents) edited_intents[message.user] = message.rating_prop.catched_intents;
-        //     return;
-        // }
-        // if (message.continue) {
-        //     conversation[message.user].push("bot: "+ resp.whatyourattr );
-        //     bot.reply(message, resp.whatyourattr);
-        //     return;
-        // }
-        // if (message.start_rating) {
-        //     isRating[message.user] = true;
-        //     star[message.user] = -1;
-        //     appropriate[message.user] = "phu_hop"; // "khong_phu_hop", "hoi_thieu", "phu_hop", "hoi_du"
-        //     catched_intents[message.user] = message.catched_intents;
-        //     edited_intents[message.user] = message.catched_intents;
-        //     conversation[message.user].push("bot: "+  resp.start_rating );
-        //     bot.reply(message, {
-        //         text: resp.start_rating,
-        //         start_rating: true,
-        //         catched_intents: catched_intents[message.user],
-        //         force_result: [
-        //             {
-        //                 title: 'Save',
-        //                 payload: {
-        //                     'quit': true,
-        //                     'save': true
-        //                 }
-        //             },
-        //             {
-        //                 title: 'Cancel',
-        //                 payload: {
-        //                     'quit': true,
-        //                     'save': false
-        //                 },
-        //             },
-        //         ]
-        //     });
-        //     return;
-        // }
         if (message.quit) {
             restartConversation(bot, message);
             return;
@@ -376,30 +338,6 @@ module.exports = function (controller) {
         
 
         if (raw_mesg && raw_mesg.length > 0) {
-            // console.log("say hi")
-            // console.log(isGetInfor);
-            // console.log(isGetIntent);
-            // if (raw_mesg.trim().toLowerCase() == "bye") {
-            //     bot.reply(message, {
-            //         text: resp.goodbye[Math.floor(Math.random() * resp.goodbye.length)],
-            //         force_result: [
-            //             {
-            //                 title: 'Bắt đầu hội thoại mới',
-            //                 payload: {
-            //                     'restart_conversation': true
-            //                 }
-            //             }
-            //         ]
-            //     });
-
-            //     var success = userController.deleteSession(id);
-            //     if (!success) {
-            //         console.log("Error in delete function");
-            //     } else {
-            //         console.log("Delete success");
-            //     }
-            //     return;
-            // }
             var messageBack = raw_mesg;
             if (message.continueToConversation != undefined && message.continueToConversation != null){
                 handleInformResponse(bot, message, message.continueToConversation);
@@ -498,37 +436,15 @@ module.exports = function (controller) {
 
                     return;
                 }
-                // console.log("agent: " + body)
-                // bot.reply(message, {
-                //     text: body.message
-                // })
                
 
 
             });
 
-            // bot.reply(message, {
-            //     text: response_body.question,
-            //     graph: graph,
-            //     force_result: [
-            //         {
-            //             title: 'Bỏ tiếp yêu cầu',
-            //             payload: {
-            //                 'remove_more': true
-            //             },
-            //         },
-            //         {
-            //             title: 'In luôn kết quả',
-            //             payload: {
-            //                 'force_show': true
-            //             }
-            //         }
-            //     ]
-            // })
-
         }
     }
     controller.on('hello', conductOnboarding);
+    controller.on('welcome_back', continueConversation);
     controller.on('message_received', callConversationManager);
 
 }

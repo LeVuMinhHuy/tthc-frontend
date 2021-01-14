@@ -19,8 +19,7 @@ function createSubview(){
 createSubview();
 
 var renderLatestActivities = (data) => {
-  // var list = document.createElement('ul');
-  // var replyList = document.getElementById('message_replies');
+	
   if (panel != null){
     $("#latest-wrapper div").remove();
     $("#latest-wrapper hr").remove();

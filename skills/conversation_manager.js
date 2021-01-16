@@ -313,10 +313,16 @@ module.exports = function (controller) {
 
 
     function handleChiPhi(bot, message, body){
+        if(body[0].length==0){
+            bot.reply(message, {
+                text: "Thủ tục này không mất phí",
+            });
+        } else {
         bot.reply(message, {
             text: resp.chiphi[0],
             chiphi: body[0]
         });
+        }
     }
 
 
@@ -390,7 +396,11 @@ module.exports = function (controller) {
         var id = message.user;
         
         var raw_mesg = message.text
-    if(message.type==='confirm'){
+    if (new RegExp(['tks','thanks','thank','cảm ơn','cam on','cảm ơn bạn','bye'].join("|")).test(message.text)) {
+    bot.reply(message,{text:'Cảm ơn bạn. Hẹn gặp lại!',goodbye: true})    
+    return;
+    }
+        if(message.type==='confirm'){
         bot.reply(message,{
             text:`bạn muốn hỏi gì về  ${message.name}?`
         })

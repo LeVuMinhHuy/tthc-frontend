@@ -37,6 +37,10 @@ var Botkit = {
       type:'reset',
     })
   },
+  clear: function(){
+    var that = this;
+    that.tthc_id = null;
+  },
   request: function (url, body) {
     var that = this;
     return new Promise(function (resolve, reject) {
@@ -362,6 +366,11 @@ var Botkit = {
     for (var v of prices){
         list_row += `<tr><td>${v.SoTien?v.SoTien:'Không Mất Phí'}</td><td>${v.MoTa?v.MoTa:""}</td></tr>`;
     }
+
+    if(prices.length==0){
+      list_row += `<tr><td>${'Không Mất Phí'}</td><td>${""}</td></tr>`;
+      return;
+    }
     
     var table = `<table class="chiphi">${list_row}</table>`;
   
@@ -606,6 +615,9 @@ var Botkit = {
       } else if (message.thuchien) {
         that.renderMessage(message);
         that.renderThucHien(message.thuchien);
+      } else if (message.goodbye) {
+        that.renderMessage(message);
+        that.clear();
       }
        else { that.renderMessage(message); }
     });

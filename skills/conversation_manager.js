@@ -3,7 +3,7 @@ request = require("request");
 sync = require('sync-request');
 
 var UserController = require("../utils/usercontroller.js")
-const CONVERSATION_MANAGER_ENDPOINT = "http://1004e0dd00b8.ngrok.io/api/send-message"
+const CONVERSATION_MANAGER_ENDPOINT = "http://cfa0430fbc08.ngrok.io/api/send-message"
 
 
 var userController = new UserController();
@@ -329,7 +329,8 @@ module.exports = function (controller) {
     function handleThoiGian(bot, message, body){
         value = body[0][0]?body[0][0]:null;
         bot.reply(message, {
-            text: value?`Bạn sẽ nhận được kết quả sau: ${value.MoTa}`:'Không Quy Định',
+            text: 'Thời gian thực hiện thủ tục là: ',
+            thoigian: value
         });
     }
 

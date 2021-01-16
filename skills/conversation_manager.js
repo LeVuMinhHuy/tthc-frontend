@@ -3,7 +3,7 @@ request = require("request");
 sync = require('sync-request');
 
 var UserController = require("../utils/usercontroller.js")
-const CONVERSATION_MANAGER_ENDPOINT = "http://7951b052a8f9.ngrok.io/api/send-message"
+const CONVERSATION_MANAGER_ENDPOINT = "http://1004e0dd00b8.ngrok.io/api/send-message"
 
 
 var userController = new UserController();
@@ -293,7 +293,7 @@ module.exports = function (controller) {
         console.log(body[0])
         bot.reply(message, {
             text: `Tìm thấy các thủ tục liên quan sau. Xin chọn một thủ tục bạn muốn.`,
-            choices: body[0].map(e=>{return {key: e[0].MaTTHC, value :  e[1].TenTTHC}}),
+            choices: body[0].map(e=>{return {key: e.MaTTHC, value :  e.TenTTHC}}),
         });
     }
 
@@ -307,39 +307,81 @@ module.exports = function (controller) {
 
     function handleDiaDiem(bot, message, body){
         bot.reply(message, {
-            type: 'response',
-            text: body.response,
+            text: "Địa điểm làm thủ tục này là: "+body[0][0].DiaChiTiepNha?body[0][0].DiaChiTiepNhan:"Không có",
         });
     }
 
 
     function handleChiPhi(bot, message, body){
         bot.reply(message, {
-            type: 'response',
-            text: body.response,
+            text: resp.chiphi[0],
+            chiphi: body[0]
         });
     }
 
 
     function handleThoiGian(bot, message, body){
+        value = body[0][0]?body[0][0]:null;
         bot.reply(message, {
-            type: 'response',
-            text: body.response,
+            text: value?`Bạn sẽ nhận được kết quả sau: ${value.MoTa}`:'Không Quy Định',
         });
     }
 
 
-    function handleThoiGian(bot, message, body){
+    function handleKetQua(bot, message, body){
         bot.reply(message, {
-            type: 'response',
-            text: body.response,
+            text: `Bạn sẽ nhận được: ${body[0][0].TenKetQua?body[0][0].TenKetQua:"Không"}`,
         });
     }
+
+
+    function handleThucHien(bot, message, body){
+        bot.reply(message, {
+            text: "Quy trình thực hiện là",
+            thuchien: body[0]
+        });
+    }
+
+    function handleGiayTo(bot, message, body){
+        bot.reply(message, {
+            text: "Giấy tờ cần thiết cho thủ tục này là: ",
+            giayto: body[0]
+        });
+    }
+
+    function handleCoQuanLinhVuc(bot, message, body){
+        bot.reply(message, {
+            text: `Cơ quan này xử lí ${body[1].count} thủ tục trong các lĩnh vực : ${body[0].map(e=>e.TenLinhVuc).join(", ")}. Bạn muốn hỏi cụ thể lĩnh vực nào?`,
+        });
+        
+    }
+
+
+    function handleCoQuan(bot, message, body){
+        bot.reply(message, {
+            text: `Cơ quan này xử lí những thủ tục sau: `,
+            choices: body[0].map(e=>{return {key: e.MaTTHC, value :  e.TenTTHC}}),
+        });
+    }
+
+
+    function handleLinhVuc(bot, message, body){
+        bot.reply(message, {
+            text: `Lĩnh vực này gồm những thủ tục sau: `,
+            choices: body[0].map(e=>{return {key: e.MaTTHC, value :  e.TenTTHC}}),
+        });
+    }
+    
 
     function handleUnknown(bot, message, body){
         bot.reply(message, {
-            type:'unknown',
             text: resp.dontunderstand,
+        });
+    }
+
+    function handleError(bot, message, body){
+        bot.reply(message, {
+            text: resp.err,
         });
     }
 
@@ -354,7 +396,7 @@ module.exports = function (controller) {
         })
     }        
     console.log(message)
-        if(message.tthc_id){
+        if(message.tthc_name){
             bot.reply(message,{
                 text: `Bạn đã chọn thủ tục: ${message.tthc_name}. Bạn muốn hỏi gì về thủ tục này?`,
             });
@@ -363,12 +405,13 @@ module.exports = function (controller) {
         request.post(CONVERSATION_MANAGER_ENDPOINT, {
             json:{
                 message: message.text,
-                state: 'not_found',
+                state: message.tthc_id?message.tthc_id:'not_found',
                 
             }
         }, (error, res, body) => {
             if(error){
-                handleUnknown(bot,message,body);
+                console.log(err)
+                handleError(bot,message,body);
                 return;
             }
             console.log(body)
@@ -376,11 +419,32 @@ module.exports = function (controller) {
                 case 'tentthc':
                     handleListTTHC(bot,message,body);
                     break;
-                case "linhvuc":
+                case "coquan_linhvuc":
+                    handleCoQuanLinhVuc(bot,message,body)
+                    break;
                 case "coquan":
-                    handleSearch(bot,message,body);
-                case "query":
-                    handleQuery(bot,message,body);
+                    handleCoQuan(bot,message,body);
+                    break;
+                case "linhvuc":
+                    handleLinhVuc(bot,message,body)
+                    break;
+                case "thoigian":
+                    handleThoiGian(bot,message,body);
+                    break;
+                case "chiphi":
+                    handleChiPhi(bot,message,body);
+                    break;
+                case "diadiem":
+                    handleDiaDiem(bot,message,body);
+                    break;
+                case "giayto":
+                    handleGiayTo(bot,message,body);
+                    break;
+                case "ketqua":
+                    handleKetQua(bot,message,body);
+                    break;
+                case "thuchien":
+                    handleThucHien(bot,message,body);
                     break;
                 default:
                     handleUnknown(bot,message,body);

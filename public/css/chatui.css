@@ -513,10 +513,11 @@
   to {background-color: blue;}
 }*/
 .btn-px{
-  padding-top: 1px;
-  padding-bottom: 1px;
-  margin-top:1px;
-  margin-bottom: 1px;
+  width: 30px;
+  padding: 0.5px 6px;
+  margin-top:0.5px;
+  margin-bottom: 0.5px;
+  font-size: 14px;
 }
 .header-icon{
   display:flex;
@@ -533,4 +534,30 @@
 .ul{
   padding-left: 20px;
   margin-bottom: 10px;
+}
+.scroll{
+  overflow-x: scroll!important;
+}
+.table{
+  table-layout: fixed;
+  width: 400px;
+}
+.ten{
+  width: 180px;
+}
+.soban{
+  width:60px;
+}
+.tenmau{
+  width: 50px;
+}
+.tenma{
+  width: 50px;
+}
+.link{
+  width:50px;
+}
+.chiphi{
+  table-layout: fixed;
+  width: 300px;
 }

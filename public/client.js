@@ -82,6 +82,7 @@ var Botkit = {
     that.deliverMessage({
       type: 'message',
       text: text,
+      tthc_id: that.tthc_id,
       user: this.guid,
       channel: this.options.use_sockets ? 'socket' : 'webhook'
     });
@@ -109,6 +110,7 @@ var Botkit = {
       ...payload,
       type: 'message',
       text: text,
+      tthc_id: that.tthc_id,
       user: this.guid,
       channel: this.options.use_sockets ? 'socket' : 'webhook'
     });
@@ -139,6 +141,7 @@ var Botkit = {
       type: 'message',
       text: text,
       user: this.guid,
+      tthc_id: that.tthc_id,
       channel: this.options.use_sockets ? 'socket' : 'webhook'
     });
 
@@ -197,6 +200,7 @@ var Botkit = {
       that.deliverMessage({
         type: connectEvent,
         user: that.guid,
+        tthc_id: that.tthc_id,
         channel: 'socket',
         user_profile: that.current_user ? that.current_user : null,
       });
@@ -326,7 +330,7 @@ var Botkit = {
       wrapper = document.createElement('div');
       button = document.createElement('button');
       button.className =  "btn btn-success btn-px";
-      text1 = document.createTextNode(i);
+      text1 = document.createTextNode(i+1);
       text2 = document.createTextNode(v.value);
       button.appendChild(text1);
       wrapper.appendChild(button);
@@ -342,7 +346,7 @@ var Botkit = {
     Array.from(that.next_line.childNodes[1].children).forEach((e,i)=>{
       e.childNodes[0].addEventListener('click',()=>{
         that.tthc_id = options[i].key; 
-        that.deliverMessage({type:'message', tthc_id:options[i].key,tthc_name:options[i].value})
+        that.deliverMessage({type:'message', tthc_id:options[i].key,tthc_name:options[i].value,select:true})
       })
     })
     that.message_list.appendChild(that.next_line);
@@ -353,12 +357,83 @@ var Botkit = {
     if (!that.next_line) {
       that.next_line = that.createNextLine();
     }
+    var list_row = '<tr><th class="sotien">Số Tiền</th><th class="mota">Mô Tả</th></tr>';
+    
+    for (var v of prices){
+        list_row += `<tr><td>${v.SoTien?v.SoTien:'Không Mất Phí'}</td><td>${v.MoTa?v.MoTa:""}</td></tr>`;
+    }
+    
+    var table = `<table class="chiphi">${list_row}</table>`;
+  
+    const messageNode = that.message_template({
+      message: {
+        html: table,
+        type:'scroll',
+      }
+    });
+    that.next_line.innerHTML = messageNode;
+    that.message_list.appendChild(that.next_line);
+    that.next_line=that.createNextLine();
+  },
+  renderKetQua: function (result) {
+    var that = this;
+    if (!that.next_line) {
+      that.next_line = that.createNextLine();
+    }
     res = document.createElement('div');
     ul = document.createElement('ul');
     ul.className='ul';
-    prices.forEach(v=>{
+    result.forEach(v=>{
       li = document.createElement('li');
-      text = document.createTextNode(`${v.SoTien} vnđ: ${v.MoTa}`)
+      text = document.createTextNode(`${v.MoTa}`)
+      li.appendChild(text);
+      ul.appendChild(li);
+    })
+    res.appendChild(ul);
+
+    const messageNode = that.message_template({
+      message: {
+        html: res.outerHTML,
+      }
+    });
+    that.next_line.innerHTML = messageNode;
+    that.message_list.appendChild(that.next_line);
+    that.next_line=that.createNextLine();
+  },
+  renderGiayTo: function(giayto) {
+    var that = this;
+    if (!that.next_line) {
+      that.next_line = that.createNextLine();
+    }
+    var list_row = '<tr><th class="ten">Tên</th><th class="soban">Số Bản Chính</th><th class="soban">Số Bản Sao</th><th class="tenmau">Tên Mẫu Đơn</th><th class="link">Link Download</th></tr>';
+    
+    for (var v of giayto){
+        list_row += `<tr><td>${v.TenGiayTo}</td><td>${v.SoBanChinh?v.SoBanChinh:'Không'}</td><td>${v.SoBanSao?v.SoBanSao:'Không'}</td><td>${v.TenMauDon?v.TenMauDon:''}</td><td><a href="${v.url?v.url:"#"}">${v.url?"Link":""}</a></td></tr>`;
+    }
+    
+    var table = `<table class="table">${list_row}</table>`;
+  
+    const messageNode = that.message_template({
+      message: {
+        html: table,
+        type:'scroll',
+      }
+    });
+    that.next_line.innerHTML = messageNode;
+    that.message_list.appendChild(that.next_line);
+    that.next_line=that.createNextLine();
+  },
+  renderThucHien: function(process) {
+    var that = this;
+    if (!that.next_line) {
+      that.next_line = that.createNextLine();
+    }
+    res = document.createElement('div');
+    ul = document.createElement('ol');
+    ul.className='ol';
+    process.forEach(v=>{
+      li = document.createElement('li');
+      text = document.createTextNode(`${v.TenTrinhTu}`)
       li.appendChild(text);
       ul.appendChild(li);
     })
@@ -378,6 +453,7 @@ var Botkit = {
       type: 'trigger',
       user: this.guid,
       channel: 'socket',
+      tthc_id: that.tthc_id,
       script: script,
       thread: thread
     });
@@ -394,6 +470,8 @@ var Botkit = {
     this.deliverMessage({
       type: 'identify',
       user: this.guid,
+
+      tthc_id: that.tthc_id,
       channel: 'socket',
       user_profile: user,
     });
@@ -515,13 +593,21 @@ var Botkit = {
 
     that.on('message', function (message) {
       if (message.choices) {
-        console.log(message)
         that.renderMessage(message);
         that.renderOptions(message.choices);
+      } else if (message.giayto) {
+        that.renderMessage(message);
+        that.renderGiayTo(message.giayto);
+      } else if (message.chiphi) {
+        that.renderMessage(message);
+        that.renderChiPhi(message.chiphi);
       } else if (message.type === 'response') {
         that.renderMessage(message);
-        // that.renderAsk();
-      } else { that.renderMessage(message); }
+      } else if (message.thuchien) {
+        that.renderMessage(message);
+        that.renderThucHien(message.thuchien);
+      }
+       else { that.renderMessage(message); }
     });
 
     if (window.self !== window.top) {

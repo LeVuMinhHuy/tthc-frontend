@@ -2,7 +2,7 @@
   --message-wrapper-background: linear-gradient(-45deg, #b0c5da, #f8f9fa);
 }
 #user-id {
-    width: 75%;
+    width: 70%;
     height: 100%;
     padding: 1px;
     word-break: break-word !important;
@@ -17,6 +17,7 @@
     padding: 15px !important;
 }
 .message-wrapper{
+  height:75vh;
 	position: relative;
   overflow-x: hidden;
 	background: var(--message-wrapper-background);
@@ -511,3 +512,25 @@
   from {background-color: red;}
   to {background-color: blue;}
 }*/
+.btn-px{
+  padding-top: 1px;
+  padding-bottom: 1px;
+  margin-top:1px;
+  margin-bottom: 1px;
+}
+.header-icon{
+  display:flex;
+  justify-content: center;
+  align-items:center;
+  height:100%;
+  color:white;
+}
+.rounded{
+  color:white!important;
+  border-radius: 50%!important;
+  padding: 5px!important;
+}
+.ul{
+  padding-left: 20px;
+  margin-bottom: 10px;
+}

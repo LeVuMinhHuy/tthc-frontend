@@ -2,6 +2,7 @@ var converter = new showdown.Converter();
 converter.setOption('openLinksInNewWindow', true);
 
 var Botkit = {
+  tthc_id: null,
   config: {
     ws_url: (location.protocol === 'https:' ? 'wss' : 'ws') + '://' + location.host,
     reconnect_timeout: 3000,
@@ -28,6 +29,13 @@ var Botkit = {
       detail: details
     });
     this.message_window.dispatchEvent(event);
+  },
+  reset: function(){
+    var that = this;
+    that.tthc_id = null;
+    that.deliverMessage({
+      type:'reset',
+    })
   },
   request: function (url, body) {
     var that = this;
@@ -276,32 +284,94 @@ var Botkit = {
       delete (that.next_line);
     }
   },
-  renderOptions: function(options){
+  renderAsk: function () {
+    var that = this;
+    if (!that.next_line) {
+      that.next_line = that.createNextLine();
+    }
+    if (text === null) return;
+    resp = converter.makeHtml(text);
+
+    const messageNode = that.message_template({
+      message: { html: text }
+    });
+    that.next_line.innerHTML = messageNode;
+
+
+    const boxStyler = styler(that.next_line);
+    if (boxStyler != null) {
+      tween({
+        from: { y: 100, scale: 0.1 },
+        to: { y: 0, scale: 1.0 },
+        ease: easing.backOut,
+        duration: 500
+      }).start(v => boxStyler.set(v));
+    }
+
+
+    that.message_list.appendChild(that.next_line);
+
+    animateTyping()
+    if (!message.isTyping) {
+      delete (that.next_line);
+    }
+  },
+  renderOptions: function (options) {
     var that = this;
     if (!that.next_line) {
       that.next_line = that.createNextLine();
     }
     res = document.createElement('div');
-    options.forEach((v)=>{
+    options.forEach((v,i) => {
       wrapper = document.createElement('div');
       button = document.createElement('button');
-      text1 = document.createTextNode(v.id);
-      text2 = document.createTextNode(v.name);
-      
+      button.className =  "btn btn-success btn-px";
+      text1 = document.createTextNode(i);
+      text2 = document.createTextNode(v.value);
       button.appendChild(text1);
       wrapper.appendChild(button);
       wrapper.appendChild(text2);
       res.appendChild(wrapper);
     })
-    console.log(res.outerHTML);
     const messageNode = that.message_template({
       message: {
-        type: 'ingoing',
+        html: res.innerHTML,
+      }
+    });
+    that.next_line.innerHTML = messageNode;
+    Array.from(that.next_line.childNodes[1].children).forEach((e,i)=>{
+      e.childNodes[0].addEventListener('click',()=>{
+        that.tthc_id = options[i].key; 
+        that.deliverMessage({type:'message', tthc_id:options[i].key,tthc_name:options[i].value})
+      })
+    })
+    that.message_list.appendChild(that.next_line);
+    that.next_line=that.createNextLine();
+  },
+  renderChiPhi: function (prices) {
+    var that = this;
+    if (!that.next_line) {
+      that.next_line = that.createNextLine();
+    }
+    res = document.createElement('div');
+    ul = document.createElement('ul');
+    ul.className='ul';
+    prices.forEach(v=>{
+      li = document.createElement('li');
+      text = document.createTextNode(`${v.SoTien} vnđ: ${v.MoTa}`)
+      li.appendChild(text);
+      ul.appendChild(li);
+    })
+    res.appendChild(ul);
+
+    const messageNode = that.message_template({
+      message: {
         html: res.outerHTML,
       }
     });
     that.next_line.innerHTML = messageNode;
     that.message_list.appendChild(that.next_line);
+    that.next_line=that.createNextLine();
   },
   triggerScript: function (script, thread) {
     this.deliverMessage({
@@ -394,18 +464,9 @@ var Botkit = {
 
     var source = document.getElementById('message_template').innerHTML;
     that.message_template = Handlebars.compile(source);
+    console.log(that.message_template);
+        var custom_source = document.getElementById('message_slider_template').innerHTML;
 
-    var custom_source = document.getElementById('message_slider_template').innerHTML;
-    that.message_slider_template = Handlebars.compile(custom_source);
-
-    var custom_source_2 = document.getElementById('message_list_template').innerHTML;
-    that.message_list_template = Handlebars.compile(custom_source_2);
-
-    var custom_source_3 = document.getElementById('message_intent_template').innerHTML;
-    that.message_intent_template = Handlebars.compile(custom_source_3);
-
-    var custom_source_4 = document.getElementById('message_rating_template').innerHTML;
-    that.message_rating_template = Handlebars.compile(custom_source_4);
 
     that.replies = document.getElementById('message_replies');
 
@@ -453,9 +514,14 @@ var Botkit = {
     });
 
     that.on('message', function (message) {
-      if(message.type==='tthc'){
-        that.renderOptions(['a','g','f','e','d'])
-      } else {that.renderMessage(message);}
+      if (message.choices) {
+        console.log(message)
+        that.renderMessage(message);
+        that.renderOptions(message.choices);
+      } else if (message.type === 'response') {
+        that.renderMessage(message);
+        // that.renderAsk();
+      } else { that.renderMessage(message); }
     });
 
     if (window.self !== window.top) {

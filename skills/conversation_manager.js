@@ -3,7 +3,7 @@ request = require("request");
 sync = require('sync-request');
 
 var UserController = require("../utils/usercontroller.js")
-const CONVERSATION_MANAGER_ENDPOINT = "http://127.0.0.1:8080/api/cse-assistant-conversation-manager"
+const CONVERSATION_MANAGER_ENDPOINT = "http://7951b052a8f9.ngrok.io/api/send-message"
 
 
 var userController = new UserController();
@@ -27,7 +27,6 @@ module.exports = function (controller) {
     var previousNonameRound = 0;
     var currentRound = 0;
     var nonameStreak = 0;
-    var matchFound = false;
 
     function isEmpty(obj) {
         for (var key in obj) {
@@ -43,6 +42,17 @@ module.exports = function (controller) {
             var id = message.user
             convo.say({
                 text: resp.hello,
+            });
+            userMessageCount[id] = 0;
+        });
+    }
+
+    function conductReset(bot, message) {
+
+        bot.startConversation(message, function (err, convo) {
+            var id = message.user
+            convo.say({
+                text: resp.reset,
             });
             userMessageCount[id] = 0;
         });
@@ -278,11 +288,105 @@ module.exports = function (controller) {
             enableEditInform : enableEditInform
         });
     }
+
+    function handleListTTHC(bot, message, body){
+        console.log(body[0])
+        bot.reply(message, {
+            text: `Tìm thấy các thủ tục liên quan sau. Xin chọn một thủ tục bạn muốn.`,
+            choices: body[0].map(e=>{return {key: e[0].MaTTHC, value :  e[1].TenTTHC}}),
+        });
+    }
+
+    function handleSearch(bot, message, body){
+        bot.reply(message, {
+            type:'option',
+            text: `Tìm thấy ${body.data.count} thủ tục liên quan đến ${body.data.name}. Bạn có muốn xem tất cả?`,
+            choices: [{key:'1',value:'có'},{key:'2',value:'không'}]
+        });
+    }
+
+    function handleDiaDiem(bot, message, body){
+        bot.reply(message, {
+            type: 'response',
+            text: body.response,
+        });
+    }
+
+
+    function handleChiPhi(bot, message, body){
+        bot.reply(message, {
+            type: 'response',
+            text: body.response,
+        });
+    }
+
+
+    function handleThoiGian(bot, message, body){
+        bot.reply(message, {
+            type: 'response',
+            text: body.response,
+        });
+    }
+
+
+    function handleThoiGian(bot, message, body){
+        bot.reply(message, {
+            type: 'response',
+            text: body.response,
+        });
+    }
+
+    function handleUnknown(bot, message, body){
+        bot.reply(message, {
+            type:'unknown',
+            text: resp.dontunderstand,
+        });
+    }
+
     function callConversationManager(bot, message) {
-
+        var body=null;
         var id = message.user;
+        
         var raw_mesg = message.text
-
+    if(message.type==='confirm'){
+        bot.reply(message,{
+            text:`bạn muốn hỏi gì về  ${message.name}?`
+        })
+    }        
+    console.log(message)
+        if(message.tthc_id){
+            bot.reply(message,{
+                text: `Bạn đã chọn thủ tục: ${message.tthc_name}. Bạn muốn hỏi gì về thủ tục này?`,
+            });
+            return;
+        }
+        request.post(CONVERSATION_MANAGER_ENDPOINT, {
+            json:{
+                message: message.text,
+                state: 'not_found',
+                
+            }
+        }, (error, res, body) => {
+            if(error){
+                handleUnknown(bot,message,body);
+                return;
+            }
+            console.log(body)
+            switch(body[1].type){
+                case 'tentthc':
+                    handleListTTHC(bot,message,body);
+                    break;
+                case "linhvuc":
+                case "coquan":
+                    handleSearch(bot,message,body);
+                case "query":
+                    handleQuery(bot,message,body);
+                    break;
+                default:
+                    handleUnknown(bot,message,body);
+            }
+        })
+        
         var user = userController.searchSession(id);
         if (user == null) {
             user = userController.insertSession(id);
@@ -302,149 +406,150 @@ module.exports = function (controller) {
 
        
 
-        if (message.completed) {
-            bot.reply(message, {
-                text: resp.goodbye[Math.floor(Math.random() * resp.goodbye.length)],
-                force_result: [
-                    {
-                        title: 'Bắt đầu hội thoại mới',
-                        payload: {
-                            'restart_conversation': true
-                        }
-                    }
-                ]
-            });
-            var success = userController.deleteSession(id);
-            if (!success) {
-                console.log("Error in delete function");
-            } else {
-                console.log("Delete success");
-            }
-            return;
-        }
-        if (message.restart_conversation) {
-            bot.reply(message, {
-                text: resp.hello
-            });
-            return;
-        }
-        if (!promiseBucket[id]) {
-            promiseBucket[id] = []
-        }
-        var bucket = promiseBucket[id]
-        var pLoading = { value: true };
-        bucket.push(pLoading)
+        // if (message.completed) {
+        //     bot.reply(message, {
+        //         text: resp.goodbye[Math.floor(Math.random() * resp.goodbye.length)],
+        //         force_result: [
+        //             {
+        //                 title: 'Bắt đầu hội thoại mới',
+        //                 payload: {
+        //                     'restart_conversation': true
+        //                 }
+        //             }
+        //         ]
+        //     });
+        //     var success = userController.deleteSession(id);
+        //     if (!success) {
+        //         console.log("Error in delete function");
+        //     } else {
+        //         console.log("Delete success");
+        //     }
+        //     return;
+        // }
+        // if (message.restart_conversation) {
+        //     bot.reply(message, {
+        //         text: resp.hello
+        //     });
+        //     return;
+        // }
+        // if (!promiseBucket[id]) {
+        //     promiseBucket[id] = []
+        // }
+        // var bucket = promiseBucket[id]
+        // var pLoading = { value: true };
+        // bucket.push(pLoading)
 
         
 
-        if (raw_mesg && raw_mesg.length > 0) {
-            var messageBack = raw_mesg;
-            if (message.continueToConversation != undefined && message.continueToConversation != null){
-                handleInformResponse(bot, message, message.continueToConversation);
-                return;
-            }
-            if (message.userResponeToInform != null){
-                if (message.userResponeToInform.anything){
-                    userAction = message.userResponeToInform.userAction;
-                    for (var prop in userAction.inform_slots){
-                        // if (userAction.inform_slots.hasOwnProperty(prop)){
-                        //     userAction.inform_slots.prop = 'anything'
-                        // }
-                        userAction.inform_slots[prop] = 'anything';
-                    }
-                    delete userAction.round;
-                    delete userAction.speaker;
-                    messageBack = userAction;
-                }
-                else if (message.userResponeToInform.acceptInform){
-                    userAction = message.userResponeToInform.userAction;
-                    delete userAction.round;
-                    delete userAction.speaker;
-                    messageBack = userAction;
-                } else {
-                    var enableEditInform = null;
-                    userAction = message.userResponeToInform.userAction;
-                    slot = resp.AGENT_INFORM_OBJECT[Object.keys(userAction.inform_slots)[0]];
-                    var msg = `Vậy ${slot} là gì bạn?`;
-                    if (message.userResponeToInform.enableEditInform != null){
-                        enableEditInform = message.userResponeToInform.enableEditInform;
-                        msg = `Vậy bạn điều chỉnh lại thông tin giúp mình nhé!`;
-                    }
+        // if (raw_mesg && raw_mesg.length > 0) {
+        //     var messageBack = raw_mesg;
+        //     if (message.continueToConversation != undefined && message.continueToConversation != null){
+        //         handleInformResponse(bot, message, message.continueToConversation);
+        //         return;
+        //     }
+        //     if (message.userResponeToInform != null){
+        //         if (message.userResponeToInform.anything){
+        //             userAction = message.userResponeToInform.userAction;
+        //             for (var prop in userAction.inform_slots){
+        //                 // if (userAction.inform_slots.hasOwnProperty(prop)){
+        //                 //     userAction.inform_slots.prop = 'anything'
+        //                 // }
+        //                 userAction.inform_slots[prop] = 'anything';
+        //             }
+        //             delete userAction.round;
+        //             delete userAction.speaker;
+        //             messageBack = userAction;
+        //         }
+        //         else if (message.userResponeToInform.acceptInform){
+        //             userAction = message.userResponeToInform.userAction;
+        //             delete userAction.round;
+        //             delete userAction.speaker;
+        //             messageBack = userAction;
+        //         } else {
+        //             var enableEditInform = null;
+        //             userAction = message.userResponeToInform.userAction;
+        //             slot = resp.AGENT_INFORM_OBJECT[Object.keys(userAction.inform_slots)[0]];
+        //             var msg = `Vậy ${slot} là gì bạn?`;
+        //             if (message.userResponeToInform.enableEditInform != null){
+        //                 enableEditInform = message.userResponeToInform.enableEditInform;
+        //                 msg = `Vậy bạn điều chỉnh lại thông tin giúp mình nhé!`;
+        //             }
                     
-                    bot.reply(message, {
-                            text: msg,
-                            enableEditInform : enableEditInform
-                        });
-                    return;
+        //             bot.reply(message, {
+        //                     text: msg,
+        //                     enableEditInform : enableEditInform
+        //                 });
+        //             return;
                     
-                }
-            }
-            if (message.userResponeToMatchfound != null){
-                if (message.userResponeToMatchfound.acceptMatchfound){
-                    messageBack = {intent: "done", inform_slots:{}, request_slots: {}}
-                } else {
-                    messageBack = {intent: "reject", inform_slots:{}, request_slots: {}}
-                }
-            }
-            if (message.userEditedInformSlot != null){
-                userAction = {intent: "inform", request_slots: {}, inform_slots:message.userEditedInformSlot.userInform};
-                messageBack = userAction;
-            }
-            console.log("request action::#########")
-            console.log(messageBack)
-            request.post(CONVERSATION_MANAGER_ENDPOINT, {
-                json: {
-                    message: messageBack,
-                    state_tracker_id: id
-                }
-            }, (error, res, body) => {
-                intent = null;
+        //         }
+        //     }
+        //     if (message.userResponeToMatchfound != null){
+        //         if (message.userResponeToMatchfound.acceptMatchfound){
+        //             messageBack = {intent: "done", inform_slots:{}, request_slots: {}}
+        //         } else {
+        //             messageBack = {intent: "reject", inform_slots:{}, request_slots: {}}
+        //         }
+        //     }
+        //     if (message.userEditedInformSlot != null){
+        //         userAction = {intent: "inform", request_slots: {}, inform_slots:message.userEditedInformSlot.userInform};
+        //         messageBack = userAction;
+        //     }
+        //     console.log("request action::#########")
+        //     console.log(messageBack)
+        //     request.post(CONVERSATION_MANAGER_ENDPOINT, {
+        //         json: {
+        //             message: messageBack,
+        //             state_tracker_id: id
+        //         }
+        //     }, (error, res, body) => {
+        //         intent = null;
                 
-                if (error || res.statusCode != 200) {
-                    console.log(error);
-                    bot.reply(message, {
-                        text: resp.err
-                    });
-                    return;
-                }
-                if (body != null && body.agent_action != null){
-                    console.log(body.agent_action)
-                    currentRound += 1;
-                    switch (body.agent_action.intent){
-                        case "inform":
-                            handleInformResponse(bot, message, body);
-                            break;
-                        case "match_found":
-                            console.log(body.agent_action.inform_slots[body.agent_action.inform_slots['activity']])
+        //         if (error || res.statusCode != 200) {
+        //             console.log(error);
+        //             bot.reply(message, {
+        //                 text: resp.err
+        //             });
+        //             return;
+        //         }
+        //         if (body != null && body.agent_action != null){
+        //             console.log(body.agent_action)
+        //             currentRound += 1;
+        //             switch (body.agent_action.intent){
+        //                 case "inform":
+        //                     handleInformResponse(bot, message, body);
+        //                     break;
+        //                 case "match_found":
+        //                     console.log(body.agent_action.inform_slots[body.agent_action.inform_slots['activity']])
 
-                            handleMatchfoundResponse(bot, message, body);
-                            break;
-                        case "done":
-                            handleDoneResponse(bot, message, body);
-                            break;
-                        case "hello":
-                            handleHelloResponse(bot, message, body);
-                            break;
-                        case "no_name":
-                            handleNonameResponse(bot, message, body);
-                            break;
-                        default:
-                            bot.reply(message, {
-                                text: body.message
-                            })
-                    }
+        //                     handleMatchfoundResponse(bot, message, body);
+        //                     break;
+        //                 case "done":
+        //                     handleDoneResponse(bot, message, body);
+        //                     break;
+        //                 case "hello":
+        //                     handleHelloResponse(bot, message, body);
+        //                     break;
+        //                 case "no_name":
+        //                     handleNonameResponse(bot, message, body);
+        //                     break;
+        //                 default:
+        //                     bot.reply(message, {
+        //                         text: body.message
+        //                     })
+        //             }
 
-                    return;
-                }
+        //             return;
+        //         }
                
 
 
-            });
+        //     });
 
-        }
+        // }
     }
     controller.on('hello', conductOnboarding);
     controller.on('welcome_back', continueConversation);
+    controller.on('reset', conductReset);
     controller.on('message_received', callConversationManager);
 
 }

@@ -18,6 +18,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js"></script>
   <script src="https://cdn.rawgit.com/showdownjs/showdown/1.7.4/dist/showdown.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.7.0/tiny-slider.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
   <link rel="stylesheet" href="css/styles.css" />
   <link rel="stylesheet" href="css/chatui.css" />
   <meta http-equiv="Content-Security-Policy" >
@@ -46,7 +47,11 @@
                 <img src="logo.png" class="avt">
               </div>
               <div id="user-id" class="name"><span style="width: 2vw; overflow: hidden;">TTHC Chatbot</span></div>
-              
+              <div class="header-icon">
+                <button class="btn rounded" onclick="Botkit.reset()">
+                  <i class="fas fa-redo" ></i>
+                </button>
+              </div>
             </div>
             <div class="disconnected main-elements" id="disconnected">
               Disconnected... reconnecting!
@@ -55,9 +60,6 @@
               Offline! Reload to reconnect.
             </div>
             <section class="message-wrapper">
-              <!-- <div id="feedback-panel">
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSe7EXwLojON1DqocOU9RDkw1RILjK9jcCeXxZsLgqi7162NCw/viewform">Gửi Feedback</a>
-              </div> -->
               <div id="logo-wrapper">
                 <img src="./hcmuttrans.png" id="background-logo">
 
@@ -73,10 +75,6 @@
                     {{/if}}
                     {{{message.html}}}
 
-                    {{#if message.open_link}}
-                    <a href="{{{message.open_link}}}" target="_blank"
-                      class="button_message">{{#if message.link_title}}{{message.link_title}}{{else}}{{message.open_link}}{{/if}}</a>
-                    {{/if}}
                   </div>
                 </div>
 
@@ -182,13 +180,9 @@
 
    
   </script>
-  <!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"> -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-  <!-- <script src="slide_show.js"></script> -->
-
   <script src="typing_indicator.js"></script>
   <script src="client.js"></script>
-  <script src="suggest_question.js"></script>
   
 </body>
 

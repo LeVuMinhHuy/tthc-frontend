@@ -329,7 +329,8 @@ module.exports = function (controller) {
     function handleThoiGian(bot, message, body){
         value = body[0][0]?body[0][0]:null;
         bot.reply(message, {
-            text: value?`Bạn sẽ nhận được kết quả sau: ${value.MoTa}`:'Không Quy Định',
+            text: 'Thời gian thực hiện thủ tục là: ',
+            thoigian: value
         });
     }
 

@@ -384,6 +384,38 @@ var Botkit = {
     that.message_list.appendChild(that.next_line);
     that.next_line=that.createNextLine();
   },
+
+  renderThoiGian: function (v) {
+    var that = this;
+    if (!that.next_line) {
+      that.next_line = that.createNextLine();
+    }
+    res = document.createElement('div');
+    ul = document.createElement('ul');
+    ul.className='ul';
+    li1 = document.createElement('li');
+    text1 = document.createTextNode(`Mô tả: ${v.MoTa?v.MoTa:'Không có dữ liệu'}`)
+    li1.appendChild(text1);
+    li2 = document.createElement('li');
+    text2 = document.createTextNode(`Thời gian giải quyết: ${v.ThoiGianGiaiQuyet?v.ThoiGianGiaiQuyet:'Không có dữ liệu'}`)
+    li2.appendChild(text2);
+    li3 = document.createElement('li');
+    text3 = document.createTextNode(`Đơn vị tính: ${v.DonViTinh?v.DonViTinh:'Không có dữ liệu'}`)
+    li3.appendChild(text3);
+    ul.appendChild(li1);
+    ul.appendChild(li2);
+    ul.appendChild(li3);
+    res.appendChild(ul);
+
+    const messageNode = that.message_template({
+      message: {
+        html: res.outerHTML,
+      }
+    });
+    that.next_line.innerHTML = messageNode;
+    that.message_list.appendChild(that.next_line);
+    that.next_line=that.createNextLine();
+  },
   renderKetQua: function (result) {
     var that = this;
     if (!that.next_line) {
@@ -615,6 +647,9 @@ var Botkit = {
       } else if (message.thuchien) {
         that.renderMessage(message);
         that.renderThucHien(message.thuchien);
+      } else if (message.thoigian) {
+        that.renderMessage(message);
+        that.renderThoiGian(message.thoigian);
       } else if (message.goodbye) {
         that.renderMessage(message);
         that.clear();

@@ -397,7 +397,7 @@ module.exports = function (controller) {
         var id = message.user;
         
         var raw_mesg = message.text
-    if (new RegExp(['tks','thanks','thank','cảm ơn','cam on','cảm ơn bạn', 'Cảm ơn', 'bye'].join("|")).test(message.text)) {
+    if (new RegExp(['tks','thanks','thank','cảm ơn','cam on','cảm ơn bạn', 'Cảm ơn', 'bye'].join("|")).test(message.text.toLowerCase())) {
     bot.reply(message,{text:'Cảm ơn bạn. Hẹn gặp lại!',goodbye: true})    
     return;
     }
@@ -421,7 +421,7 @@ module.exports = function (controller) {
             }
         }, (error, res, body) => {
             if(error){
-                console.log(err)
+                console.log(error)
                 handleError(bot,message,body);
                 return;
             }

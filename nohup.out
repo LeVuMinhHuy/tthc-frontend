@@ -1,0 +1,1070 @@
+[33m[nodemon] 2.0.7[39m
+[33m[nodemon] to restart at any time, enter `rs`[39m
+[33m[nodemon] watching path(s): *.*[39m
+[33m[nodemon] watching extensions: js,mjs,json[39m
+[32m[nodemon] starting `node bot.js`[39m
+Initializing Botkit v0.7.0
+info: ** Using simple storage. Saving data to /root/tthc-frontend/.data/db/
+Configure a MONGO_URI to enable message history
+I AM ONLINE! COME TALK TO ME: http://localhost:80
+[33m[nodemon] 2.0.7[39m
+[33m[nodemon] to restart at any time, enter `rs`[39m
+[33m[nodemon] watching path(s): *.*[39m
+[33m[nodemon] watching extensions: js,mjs,json[39m
+[32m[nodemon] starting `node bot.js`[39m
+Initializing Botkit v0.7.0
+info: ** Using simple storage. Saving data to /root/tthc-frontend/.data/db/
+Configure a MONGO_URI to enable message history
+I AM ONLINE! COME TALK TO ME: http://localhost:80
+{
+  type: 'message_received',
+  text: 'giấy phép lái xe',
+  tthc_id: null,
+  user: 'b022bb19-6bc3-31a0-e00e-af90be621c01',
+  channel: 'socket',
+  raw_message: {
+    type: 'message',
+    text: 'giấy phép lái xe',
+    tthc_id: null,
+    user: 'b022bb19-6bc3-31a0-e00e-af90be621c01',
+    channel: 'socket'
+  },
+  _pipeline: { stage: 'receive' }
+}
+{
+  type: 'message_received',
+  text: 'giấy phép lái xe',
+  tthc_id: null,
+  user: 'b022bb19-6bc3-31a0-e00e-af90be621c01',
+  channel: 'socket',
+  raw_message: {
+    type: 'message',
+    text: 'giấy phép lái xe',
+    tthc_id: null,
+    user: 'b022bb19-6bc3-31a0-e00e-af90be621c01',
+    channel: 'socket'
+  },
+  _pipeline: { stage: 'receive' }
+}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+  "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <title>elasticsearch.exceptions.NotFoundError: NotFoundError(404, 'index_not_found_exception', 'no such index [tentthc]', tentthc, index_or_alias) // Werkzeug Debugger</title>
+    <link rel="stylesheet" href="?__debugger__=yes&amp;cmd=resource&amp;f=style.css"
+        type="text/css">
+    <!-- We need to make sure this has a favicon so that the debugger does
+         not by accident trigger a request to /favicon.ico which might
+         change the application state. -->
+    <link rel="shortcut icon"
+        href="?__debugger__=yes&amp;cmd=resource&amp;f=console.png">
+    <script src="?__debugger__=yes&amp;cmd=resource&amp;f=jquery.js"></script>
+    <script src="?__debugger__=yes&amp;cmd=resource&amp;f=debugger.js"></script>
+    <script type="text/javascript">
+      var TRACEBACK = 140588820465552,
+          CONSOLE_MODE = false,
+          EVALEX = true,
+          EVALEX_TRUSTED = false,
+          SECRET = "uCKwq874JTQAVS8iXNM9";
+    </script>
+  </head>
+  <body style="background-color: #fff">
+    <div class="debugger">
+<h1>elasticsearch.exceptions.NotFoundError</h1>
+<div class="detail">
+  <p class="errormsg">elasticsearch.exceptions.NotFoundError: NotFoundError(404, 'index_not_found_exception', 'no such index [tentthc]', tentthc, index_or_alias)</p>
+</div>
+<h2 class="traceback">Traceback <em>(most recent call last)</em></h2>
+<div class="traceback">
+  
+  <ul><li><div class="frame" id="frame-140588820465360">
+  <h4>File <cite class="filename">"/root/miniconda3/lib/python3.8/site-packages/flask/app.py"</cite>,
+      line <em class="line">2464</em>,
+      in <code class="function">__call__</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">    </span>def __call__(self, environ, start_response):</pre>
+<pre class="line before"><span class="ws">        </span>&quot;&quot;&quot;The WSGI server calls the Flask application object as the</pre>
+<pre class="line before"><span class="ws">        </span>WSGI application. This calls :meth:`wsgi_app` which can be</pre>
+<pre class="line before"><span class="ws">        </span>wrapped to applying middleware.&quot;&quot;&quot;</pre>
+<pre class="line current"><span class="ws">        </span>return self.wsgi_app(environ, start_response)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def __repr__(self):</pre>
+<pre class="line after"><span class="ws">        </span>return &quot;&lt;%s %r&gt;&quot; % (self.__class__.__name__, self.name)</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140588820466320">
+  <h4>File <cite class="filename">"/root/miniconda3/lib/python3.8/site-packages/flask/app.py"</cite>,
+      line <em class="line">2450</em>,
+      in <code class="function">wsgi_app</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">            </span>try:</pre>
+<pre class="line before"><span class="ws">                </span>ctx.push()</pre>
+<pre class="line before"><span class="ws">                </span>response = self.full_dispatch_request()</pre>
+<pre class="line before"><span class="ws">            </span>except Exception as e:</pre>
+<pre class="line before"><span class="ws">                </span>error = e</pre>
+<pre class="line current"><span class="ws">                </span>response = self.handle_exception(e)</pre>
+<pre class="line after"><span class="ws">            </span>except:  # noqa: B001</pre>
+<pre class="line after"><span class="ws">                </span>error = sys.exc_info()[1]</pre>
+<pre class="line after"><span class="ws">                </span>raise</pre>
+<pre class="line after"><span class="ws">            </span>return response(environ, start_response)</pre>
+<pre class="line after"><span class="ws">        </span>finally:</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140588820466368">
+  <h4>File <cite class="filename">"/root/miniconda3/lib/python3.8/site-packages/flask_cors/extension.py"</cite>,
+      line <em class="line">165</em>,
+      in <code class="function">wrapped_function</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">        </span># Wrap exception handlers with cross_origin</pre>
+<pre class="line before"><span class="ws">        </span># These error handlers will still respect the behavior of the route</pre>
+<pre class="line before"><span class="ws">        </span>if options.get('intercept_exceptions', True):</pre>
+<pre class="line before"><span class="ws">            </span>def _after_request_decorator(f):</pre>
+<pre class="line before"><span class="ws">                </span>def wrapped_function(*args, **kwargs):</pre>
+<pre class="line current"><span class="ws">                    </span>return cors_after_request(app.make_response(f(*args, **kwargs)))</pre>
+<pre class="line after"><span class="ws">                </span>return wrapped_function</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">            </span>if hasattr(app, 'handle_exception'):</pre>
+<pre class="line after"><span class="ws">                </span>app.handle_exception = _after_request_decorator(</pre>
+<pre class="line after"><span class="ws">                    </span>app.handle_exception)</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140588820465696">
+  <h4>File <cite class="filename">"/root/miniconda3/lib/python3.8/site-packages/flask/app.py"</cite>,
+      line <em class="line">1867</em>,
+      in <code class="function">handle_exception</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">            </span># if we want to repropagate the exception, we can attempt to</pre>
+<pre class="line before"><span class="ws">            </span># raise it with the whole traceback in case we can do that</pre>
+<pre class="line before"><span class="ws">            </span># (the function was actually called from the except part)</pre>
+<pre class="line before"><span class="ws">            </span># otherwise, we just raise the error again</pre>
+<pre class="line before"><span class="ws">            </span>if exc_value is e:</pre>
+<pre class="line current"><span class="ws">                </span>reraise(exc_type, exc_value, tb)</pre>
+<pre class="line after"><span class="ws">            </span>else:</pre>
+<pre class="line after"><span class="ws">                </span>raise e</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">        </span>self.log_exception((exc_type, exc_value, tb))</pre>
+<pre class="line after"><span class="ws">        </span>server_error = InternalServerError()</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140588820465792">
+  <h4>File <cite class="filename">"/root/miniconda3/lib/python3.8/site-packages/flask/_compat.py"</cite>,
+      line <em class="line">39</em>,
+      in <code class="function">reraise</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">    </span>import collections.abc as collections_abc</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">    </span>def reraise(tp, value, tb=None):</pre>
+<pre class="line before"><span class="ws">        </span>if value.__traceback__ is not tb:</pre>
+<pre class="line before"><span class="ws">            </span>raise value.with_traceback(tb)</pre>
+<pre class="line current"><span class="ws">        </span>raise value</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>implements_to_string = _identity</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws"></span>else:</pre>
+<pre class="line after"><span class="ws">    </span>iterkeys = lambda d: d.iterkeys()</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140588820466224">
+  <h4>File <cite class="filename">"/root/miniconda3/lib/python3.8/site-packages/flask/app.py"</cite>,
+      line <em class="line">2447</em>,
+      in <code class="function">wsgi_app</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">        </span>ctx = self.request_context(environ)</pre>
+<pre class="line before"><span class="ws">        </span>error = None</pre>
+<pre class="line before"><span class="ws">        </span>try:</pre>
+<pre class="line before"><span class="ws">            </span>try:</pre>
+<pre class="line before"><span class="ws">                </span>ctx.push()</pre>
+<pre class="line current"><span class="ws">                </span>response = self.full_dispatch_request()</pre>
+<pre class="line after"><span class="ws">            </span>except Exception as e:</pre>
+<pre class="line after"><span class="ws">                </span>error = e</pre>
+<pre class="line after"><span class="ws">                </span>response = self.handle_exception(e)</pre>
+<pre class="line after"><span class="ws">            </span>except:  # noqa: B001</pre>
+<pre class="line after"><span class="ws">                </span>error = sys.exc_info()[1]</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140588820465744">
+  <h4>File <cite class="filename">"/root/miniconda3/lib/python3.8/site-packages/flask/app.py"</cite>,
+      line <em class="line">1952</em>,
+      in <code class="function">full_dispatch_request</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">            </span>request_started.send(self)</pre>
+<pre class="line before"><span class="ws">            </span>rv = self.preprocess_request()</pre>
+<pre class="line before"><span class="ws">            </span>if rv is None:</pre>
+<pre class="line before"><span class="ws">                </span>rv = self.dispatch_request()</pre>
+<pre class="line before"><span class="ws">        </span>except Exception as e:</pre>
+<pre class="line current"><span class="ws">            </span>rv = self.handle_user_exception(e)</pre>
+<pre class="line after"><span class="ws">        </span>return self.finalize_request(rv)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def finalize_request(self, rv, from_error_handler=False):</pre>
+<pre class="line after"><span class="ws">        </span>&quot;&quot;&quot;Given the return value from a view function this finalizes</pre>
+<pre class="line after"><span class="ws">        </span>the request by converting it into a response and invoking the</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140588820466032">
+  <h4>File <cite class="filename">"/root/miniconda3/lib/python3.8/site-packages/flask_cors/extension.py"</cite>,
+      line <em class="line">165</em>,
+      in <code class="function">wrapped_function</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">        </span># Wrap exception handlers with cross_origin</pre>
+<pre class="line before"><span class="ws">        </span># These error handlers will still respect the behavior of the route</pre>
+<pre class="line before"><span class="ws">        </span>if options.get('intercept_exceptions', True):</pre>
+<pre class="line before"><span class="ws">            </span>def _after_request_decorator(f):</pre>
+<pre class="line before"><span class="ws">                </span>def wrapped_function(*args, **kwargs):</pre>
+<pre class="line current"><span class="ws">                    </span>return cors_after_request(app.make_response(f(*args, **kwargs)))</pre>
+<pre class="line after"><span class="ws">                </span>return wrapped_function</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">            </span>if hasattr(app, 'handle_exception'):</pre>
+<pre class="line after"><span class="ws">                </span>app.handle_exception = _after_request_decorator(</pre>
+<pre class="line after"><span class="ws">                    </span>app.handle_exception)</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140588820466080">
+  <h4>File <cite class="filename">"/root/miniconda3/lib/python3.8/site-packages/flask/app.py"</cite>,
+      line <em class="line">1821</em>,
+      in <code class="function">handle_user_exception</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">            </span>return self.handle_http_exception(e)</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">        </span>handler = self._find_error_handler(e)</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">        </span>if handler is None:</pre>
+<pre class="line current"><span class="ws">            </span>reraise(exc_type, exc_value, tb)</pre>
+<pre class="line after"><span class="ws">        </span>return handler(e)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def handle_exception(self, e):</pre>
+<pre class="line after"><span class="ws">        </span>&quot;&quot;&quot;Handle an exception that did not have an error handler</pre>
+<pre class="line after"><span class="ws">        </span>associated with it, or that was raised from an error handler.</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140588820466176">
+  <h4>File <cite class="filename">"/root/miniconda3/lib/python3.8/site-packages/flask/_compat.py"</cite>,
+      line <em class="line">39</em>,
+      in <code class="function">reraise</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">    </span>import collections.abc as collections_abc</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">    </span>def reraise(tp, value, tb=None):</pre>
+<pre class="line before"><span class="ws">        </span>if value.__traceback__ is not tb:</pre>
+<pre class="line before"><span class="ws">            </span>raise value.with_traceback(tb)</pre>
+<pre class="line current"><span class="ws">        </span>raise value</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>implements_to_string = _identity</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws"></span>else:</pre>
+<pre class="line after"><span class="ws">    </span>iterkeys = lambda d: d.iterkeys()</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140588820466128">
+  <h4>File <cite class="filename">"/root/miniconda3/lib/python3.8/site-packages/flask/app.py"</cite>,
+      line <em class="line">1950</em>,
+      in <code class="function">full_dispatch_request</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">        </span>self.try_trigger_before_first_request_functions()</pre>
+<pre class="line before"><span class="ws">        </span>try:</pre>
+<pre class="line before"><span class="ws">            </span>request_started.send(self)</pre>
+<pre class="line before"><span class="ws">            </span>rv = self.preprocess_request()</pre>
+<pre class="line before"><span class="ws">            </span>if rv is None:</pre>
+<pre class="line current"><span class="ws">                </span>rv = self.dispatch_request()</pre>
+<pre class="line after"><span class="ws">        </span>except Exception as e:</pre>
+<pre class="line after"><span class="ws">            </span>rv = self.handle_user_exception(e)</pre>
+<pre class="line after"><span class="ws">        </span>return self.finalize_request(rv)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def finalize_request(self, rv, from_error_handler=False):</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140588820465120">
+  <h4>File <cite class="filename">"/root/miniconda3/lib/python3.8/site-packages/flask/app.py"</cite>,
+      line <em class="line">1936</em>,
+      in <code class="function">dispatch_request</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">            </span>getattr(rule, &quot;provide_automatic_options&quot;, False)</pre>
+<pre class="line before"><span class="ws">            </span>and req.method == &quot;OPTIONS&quot;</pre>
+<pre class="line before"><span class="ws">        </span>):</pre>
+<pre class="line before"><span class="ws">            </span>return self.make_default_options_response()</pre>
+<pre class="line before"><span class="ws">        </span># otherwise dispatch to the handler for that endpoint</pre>
+<pre class="line current"><span class="ws">        </span>return self.view_functions[rule.endpoint](**req.view_args)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def full_dispatch_request(self):</pre>
+<pre class="line after"><span class="ws">        </span>&quot;&quot;&quot;Dispatches the request and on top of that performs request</pre>
+<pre class="line after"><span class="ws">        </span>pre and postprocessing as well as HTTP exception catching and</pre>
+<pre class="line after"><span class="ws">        </span>error handling.</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140588820466416">
+  <h4>File <cite class="filename">"/root/tthc/api.py"</cite>,
+      line <em class="line">28</em>,
+      in <code class="function">send_message</code></h4>
+  <div class="source "><pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">    </span>if input_data['state'] == 'not_found':</pre>
+<pre class="line before"><span class="ws">        </span>result = get_name_tthc(message)</pre>
+<pre class="line before"><span class="ws">        </span>query = result[0]</pre>
+<pre class="line before"><span class="ws">        </span>type_database = result[1]</pre>
+<pre class="line current"><span class="ws">        </span>return jsonify(searchTTHC(type_database, query))</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>intent = catch_intent(message)</pre>
+<pre class="line after"><span class="ws">    </span>maTTHC = input_data['state']</pre>
+<pre class="line after"><span class="ws">    </span>print(maTTHC)</pre>
+<pre class="line after"><span class="ws"></span> </pre></div>
+</div>
+
+<li><div class="frame" id="frame-140588820466464">
+  <h4>File <cite class="filename">"/root/tthc/message_handler.py"</cite>,
+      line <em class="line">11</em>,
+      in <code class="function">searchTTHC</code></h4>
+  <div class="source "><pre class="line before"><span class="ws"></span>from functools import reduce</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws"></span>def searchTTHC(type_database, query):</pre>
+<pre class="line before"><span class="ws">    </span>query = preprocess_message(query)</pre>
+<pre class="line current"><span class="ws">    </span>[result, info] = search(type_database, query)</pre>
+<pre class="line after"><span class="ws">    </span>if len(result) &gt; 0:</pre>
+<pre class="line after"><span class="ws">        </span>TTHC = list(map(lambda x: list(map(lambda y: {y[0]: y[1]}, x.items())), result))</pre>
+<pre class="line after"><span class="ws">        </span>return [flatten(TTHC), info]</pre>
+<pre class="line after"><span class="ws">    </span>return [[],{'type': 'unknown', 'count': 0}]</pre>
+<pre class="line after"><span class="ws"></span> </pre></div>
+</div>
+
+<li><div class="frame" id="frame-140588820466656">
+  <h4>File <cite class="filename">"/root/tthc/query.py"</cite>,
+      line <em class="line">17</em>,
+      in <code class="function">search</code></h4>
+  <div class="source "><pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws"></span>Base = declarative_base()</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws"></span>def search(case, query):</pre>
+<pre class="line before"><span class="ws">    </span>if case == TYPE_NAME_SEARCH_TTHC.THU_TUC:</pre>
+<pre class="line current"><span class="ws">        </span>result = searchTTHC(query)</pre>
+<pre class="line after"><span class="ws">        </span>filter_result = list(filter(lambda x: x['_score'] &gt; TENTTHC_THRESHOLD_SCORE, result))</pre>
+<pre class="line after"><span class="ws">        </span>if (len(filter_result) == 0):</pre>
+<pre class="line after"><span class="ws">            </span>return [[],{'type': 'unknown', 'count': 0}]</pre>
+<pre class="line after"><span class="ws">        </span>IDs = tuple(map(lambda x: x['_id'], filter_result))</pre>
+<pre class="line after"><span class="ws">        </span>if (len(IDs) == 0):</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140588820466560">
+  <h4>File <cite class="filename">"/root/tthc/query.py"</cite>,
+      line <em class="line">76</em>,
+      in <code class="function">searchTTHC</code></h4>
+  <div class="source "><pre class="line before"><span class="ws">        </span>result = queryThuchien(maTTHC).fetchall()</pre>
+<pre class="line before"><span class="ws">        </span>return [result, {'type': 'thuchien', 'count': len(result)}]</pre>
+<pre class="line before"><span class="ws">    </span>return [[],{'type': 'unknown', 'count': 0}]</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws"></span>def searchTTHC(query):</pre>
+<pre class="line current"><span class="ws">    </span>result = es.search(index=&quot;tentthc&quot;, body={&quot;query&quot;: {</pre>
+<pre class="line after"><span class="ws">        </span>&quot;query_string&quot;: {</pre>
+<pre class="line after"><span class="ws">            </span>&quot;query&quot;: query,</pre>
+<pre class="line after"><span class="ws">        </span>}}})</pre>
+<pre class="line after"><span class="ws">    </span>return result['hits']['hits']</pre>
+<pre class="line after"><span class="ws"></span> </pre></div>
+</div>
+
+<li><div class="frame" id="frame-140588820466608">
+  <h4>File <cite class="filename">"/root/miniconda3/lib/python3.8/site-packages/elasticsearch/client/utils.py"</cite>,
+      line <em class="line">152</em>,
+      in <code class="function">_wrapped</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">            </span># don't treat ignore, request_timeout, and opaque_id as other params to avoid escaping</pre>
+<pre class="line before"><span class="ws">            </span>for p in (&quot;ignore&quot;, &quot;request_timeout&quot;):</pre>
+<pre class="line before"><span class="ws">                </span>if p in kwargs:</pre>
+<pre class="line before"><span class="ws">                    </span>params[p] = kwargs.pop(p)</pre>
+<pre class="line current"><span class="ws">            </span>return func(*args, params=params, headers=headers, **kwargs)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">        </span>return _wrapped</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>return _wrapper</pre>
+<pre class="line after"><span class="ws"></span> </pre></div>
+</div>
+
+<li><div class="frame" id="frame-140588820466752">
+  <h4>File <cite class="filename">"/root/miniconda3/lib/python3.8/site-packages/elasticsearch/client/__init__.py"</cite>,
+      line <em class="line">1658</em>,
+      in <code class="function">search</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">        </span>&quot;&quot;&quot;</pre>
+<pre class="line before"><span class="ws">        </span># from is a reserved word so it cannot be used, use from_ instead</pre>
+<pre class="line before"><span class="ws">        </span>if &quot;from_&quot; in params:</pre>
+<pre class="line before"><span class="ws">            </span>params[&quot;from&quot;] = params.pop(&quot;from_&quot;)</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line current"><span class="ws">        </span>return self.transport.perform_request(</pre>
+<pre class="line after"><span class="ws">            </span>&quot;POST&quot;,</pre>
+<pre class="line after"><span class="ws">            </span>_make_path(index, doc_type, &quot;_search&quot;),</pre>
+<pre class="line after"><span class="ws">            </span>params=params,</pre>
+<pre class="line after"><span class="ws">            </span>headers=headers,</pre>
+<pre class="line after"><span class="ws">            </span>body=body,</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140588820466704">
+  <h4>File <cite class="filename">"/root/miniconda3/lib/python3.8/site-packages/elasticsearch/transport.py"</cite>,
+      line <em class="line">392</em>,
+      in <code class="function">perform_request</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">                        </span>pass</pre>
+<pre class="line before"><span class="ws">                    </span># raise exception on last retry</pre>
+<pre class="line before"><span class="ws">                    </span>if attempt == self.max_retries:</pre>
+<pre class="line before"><span class="ws">                        </span>raise e</pre>
+<pre class="line before"><span class="ws">                </span>else:</pre>
+<pre class="line current"><span class="ws">                    </span>raise e</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">            </span>else:</pre>
+<pre class="line after"><span class="ws">                </span># connection didn't fail, confirm it's live status</pre>
+<pre class="line after"><span class="ws">                </span>self.connection_pool.mark_live(connection)</pre>
+<pre class="line after"><span class="ws"></span> </pre></div>
+</div>
+
+<li><div class="frame" id="frame-140588820466944">
+  <h4>File <cite class="filename">"/root/miniconda3/lib/python3.8/site-packages/elasticsearch/transport.py"</cite>,
+      line <em class="line">358</em>,
+      in <code class="function">perform_request</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">        </span>for attempt in range(self.max_retries + 1):</pre>
+<pre class="line before"><span class="ws">            </span>connection = self.get_connection()</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">            </span>try:</pre>
+<pre class="line current"><span class="ws">                </span>status, headers_response, data = connection.perform_request(</pre>
+<pre class="line after"><span class="ws">                    </span>method,</pre>
+<pre class="line after"><span class="ws">                    </span>url,</pre>
+<pre class="line after"><span class="ws">                    </span>params,</pre>
+<pre class="line after"><span class="ws">                    </span>body,</pre>
+<pre class="line after"><span class="ws">                    </span>headers=headers,</pre></div>
+</div>
+
+<li><div class="frame" id="frame-140588820466848">
+  <h4>File <cite class="filename">"/root/miniconda3/lib/python3.8/site-packages/elasticsearch/connection/http_urllib3.py"</cite>,
+      line <em class="line">269</em>,
+      in <code class="function">perform_request</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">        </span># raise errors based on http status codes, let the client handle those if needed</pre>
+<pre class="line before"><span class="ws">        </span>if not (200 &lt;= response.status &lt; 300) and response.status not in ignore:</pre>
+<pre class="line before"><span class="ws">            </span>self.log_request_fail(</pre>
+<pre class="line before"><span class="ws">                </span>method, full_url, url, orig_body, duration, response.status, raw_data</pre>
+<pre class="line before"><span class="ws">            </span>)</pre>
+<pre class="line current"><span class="ws">            </span>self._raise_error(response.status, raw_data)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">        </span>self.log_request_success(</pre>
+<pre class="line after"><span class="ws">            </span>method, full_url, url, orig_body, response.status, raw_data, duration</pre>
+<pre class="line after"><span class="ws">        </span>)</pre>
+<pre class="line after"><span class="ws"></span> </pre></div>
+</div>
+
+<li><div class="frame" id="frame-140588820467040">
+  <h4>File <cite class="filename">"/root/miniconda3/lib/python3.8/site-packages/elasticsearch/connection/base.py"</cite>,
+      line <em class="line">315</em>,
+      in <code class="function">_raise_error</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">                </span>if isinstance(error_message, dict) and &quot;type&quot; in error_message:</pre>
+<pre class="line before"><span class="ws">                    </span>error_message = error_message[&quot;type&quot;]</pre>
+<pre class="line before"><span class="ws">        </span>except (ValueError, TypeError) as err:</pre>
+<pre class="line before"><span class="ws">            </span>logger.warning(&quot;Undecodable raw error response from server: %s&quot;, err)</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line current"><span class="ws">        </span>raise HTTP_EXCEPTIONS.get(status_code, TransportError)(</pre>
+<pre class="line after"><span class="ws">            </span>status_code, error_message, additional_info</pre>
+<pre class="line after"><span class="ws">        </span>)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def _get_default_user_agent(self):</pre>
+<pre class="line after"><span class="ws">        </span>return &quot;elasticsearch-py/%s (Python %s)&quot; % (__versionstr__, python_version())</pre></div>
+</div>
+</ul>
+  <blockquote>elasticsearch.exceptions.NotFoundError: NotFoundError(404, 'index_not_found_exception', 'no such index [tentthc]', tentthc, index_or_alias)</blockquote>
+</div>
+
+<div class="plain">
+  <form action="/?__debugger__=yes&amp;cmd=paste" method="post">
+    <p>
+      <input type="hidden" name="language" value="pytb">
+      This is the Copy/Paste friendly version of the traceback.  <span
+      class="pastemessage">You can also paste this traceback into
+      a <a href="https://gist.github.com/">gist</a>:
+      <input type="submit" value="create paste"></span>
+    </p>
+    <textarea cols="50" rows="10" name="code" readonly>Traceback (most recent call last):
+  File &quot;/root/miniconda3/lib/python3.8/site-packages/flask/app.py&quot;, line 2464, in __call__
+    return self.wsgi_app(environ, start_response)
+  File &quot;/root/miniconda3/lib/python3.8/site-packages/flask/app.py&quot;, line 2450, in wsgi_app
+    response = self.handle_exception(e)
+  File &quot;/root/miniconda3/lib/python3.8/site-packages/flask_cors/extension.py&quot;, line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File &quot;/root/miniconda3/lib/python3.8/site-packages/flask/app.py&quot;, line 1867, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File &quot;/root/miniconda3/lib/python3.8/site-packages/flask/_compat.py&quot;, line 39, in reraise
+    raise value
+  File &quot;/root/miniconda3/lib/python3.8/site-packages/flask/app.py&quot;, line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File &quot;/root/miniconda3/lib/python3.8/site-packages/flask/app.py&quot;, line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File &quot;/root/miniconda3/lib/python3.8/site-packages/flask_cors/extension.py&quot;, line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File &quot;/root/miniconda3/lib/python3.8/site-packages/flask/app.py&quot;, line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File &quot;/root/miniconda3/lib/python3.8/site-packages/flask/_compat.py&quot;, line 39, in reraise
+    raise value
+  File &quot;/root/miniconda3/lib/python3.8/site-packages/flask/app.py&quot;, line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File &quot;/root/miniconda3/lib/python3.8/site-packages/flask/app.py&quot;, line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File &quot;/root/tthc/api.py&quot;, line 28, in send_message
+    return jsonify(searchTTHC(type_database, query))
+  File &quot;/root/tthc/message_handler.py&quot;, line 11, in searchTTHC
+    [result, info] = search(type_database, query)
+  File &quot;/root/tthc/query.py&quot;, line 17, in search
+    result = searchTTHC(query)
+  File &quot;/root/tthc/query.py&quot;, line 76, in searchTTHC
+    result = es.search(index=&quot;tentthc&quot;, body={&quot;query&quot;: {
+  File &quot;/root/miniconda3/lib/python3.8/site-packages/elasticsearch/client/utils.py&quot;, line 152, in _wrapped
+    return func(*args, params=params, headers=headers, **kwargs)
+  File &quot;/root/miniconda3/lib/python3.8/site-packages/elasticsearch/client/__init__.py&quot;, line 1658, in search
+    return self.transport.perform_request(
+  File &quot;/root/miniconda3/lib/python3.8/site-packages/elasticsearch/transport.py&quot;, line 392, in perform_request
+    raise e
+  File &quot;/root/miniconda3/lib/python3.8/site-packages/elasticsearch/transport.py&quot;, line 358, in perform_request
+    status, headers_response, data = connection.perform_request(
+  File &quot;/root/miniconda3/lib/python3.8/site-packages/elasticsearch/connection/http_urllib3.py&quot;, line 269, in perform_request
+    self._raise_error(response.status, raw_data)
+  File &quot;/root/miniconda3/lib/python3.8/site-packages/elasticsearch/connection/base.py&quot;, line 315, in _raise_error
+    raise HTTP_EXCEPTIONS.get(status_code, TransportError)(
+elasticsearch.exceptions.NotFoundError: NotFoundError(404, 'index_not_found_exception', 'no such index [tentthc]', tentthc, index_or_alias)</textarea>
+  </form>
+</div>
+<div class="explanation">
+  The debugger caught an exception in your WSGI application.  You can now
+  look at the traceback which led to the error.  <span class="nojavascript">
+  If you enable JavaScript you can also use additional features such as code
+  execution (if the evalex feature is enabled), automatic pasting of the
+  exceptions and much more.</span>
+</div>
+      <div class="footer">
+        Brought to you by <strong class="arthur">DON'T PANIC</strong>, your
+        friendly Werkzeug powered traceback interpreter.
+      </div>
+    </div>
+
+    <div class="pin-prompt">
+      <div class="inner">
+        <h3>Console Locked</h3>
+        <p>
+          The console is locked and needs to be unlocked by entering the PIN.
+          You can find the PIN printed out on the standard output of your
+          shell that runs the server.
+        <form>
+          <p>PIN:
+            <input type=text name=pin size=14>
+            <input type=submit name=btn value="Confirm Pin">
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
+
+<!--
+
+Traceback (most recent call last):
+  File "/root/miniconda3/lib/python3.8/site-packages/flask/app.py", line 2464, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/root/miniconda3/lib/python3.8/site-packages/flask/app.py", line 2450, in wsgi_app
+    response = self.handle_exception(e)
+  File "/root/miniconda3/lib/python3.8/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/root/miniconda3/lib/python3.8/site-packages/flask/app.py", line 1867, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/root/miniconda3/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/root/miniconda3/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/root/miniconda3/lib/python3.8/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/root/miniconda3/lib/python3.8/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/root/miniconda3/lib/python3.8/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/root/miniconda3/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/root/miniconda3/lib/python3.8/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/root/miniconda3/lib/python3.8/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/root/tthc/api.py", line 28, in send_message
+    return jsonify(searchTTHC(type_database, query))
+  File "/root/tthc/message_handler.py", line 11, in searchTTHC
+    [result, info] = search(type_database, query)
+  File "/root/tthc/query.py", line 17, in search
+    result = searchTTHC(query)
+  File "/root/tthc/query.py", line 76, in searchTTHC
+    result = es.search(index="tentthc", body={"query": {
+  File "/root/miniconda3/lib/python3.8/site-packages/elasticsearch/client/utils.py", line 152, in _wrapped
+    return func(*args, params=params, headers=headers, **kwargs)
+  File "/root/miniconda3/lib/python3.8/site-packages/elasticsearch/client/__init__.py", line 1658, in search
+    return self.transport.perform_request(
+  File "/root/miniconda3/lib/python3.8/site-packages/elasticsearch/transport.py", line 392, in perform_request
+    raise e
+  File "/root/miniconda3/lib/python3.8/site-packages/elasticsearch/transport.py", line 358, in perform_request
+    status, headers_response, data = connection.perform_request(
+  File "/root/miniconda3/lib/python3.8/site-packages/elasticsearch/connection/http_urllib3.py", line 269, in perform_request
+    self._raise_error(response.status, raw_data)
+  File "/root/miniconda3/lib/python3.8/site-packages/elasticsearch/connection/base.py", line 315, in _raise_error
+    raise HTTP_EXCEPTIONS.get(status_code, TransportError)(
+elasticsearch.exceptions.NotFoundError: NotFoundError(404, 'index_not_found_exception', 'no such index [tentthc]', tentthc, index_or_alias)
+
+-->
+
+{
+  type: 'message_received',
+  text: 'giấy phép lái xe',
+  tthc_id: null,
+  user: 'b022bb19-6bc3-31a0-e00e-af90be621c01',
+  channel: 'socket',
+  raw_message: {
+    type: 'message',
+    text: 'giấy phép lái xe',
+    tthc_id: null,
+    user: 'b022bb19-6bc3-31a0-e00e-af90be621c01',
+    channel: 'socket'
+  },
+  _pipeline: { stage: 'receive' }
+}
+{
+  type: 'message_received',
+  text: 'giấy phép lái xe',
+  tthc_id: null,
+  user: 'b022bb19-6bc3-31a0-e00e-af90be621c01',
+  channel: 'socket',
+  raw_message: {
+    type: 'message',
+    text: 'giấy phép lái xe',
+    tthc_id: null,
+    user: 'b022bb19-6bc3-31a0-e00e-af90be621c01',
+    channel: 'socket'
+  },
+  _pipeline: { stage: 'receive' }
+}
+[
+  [
+    {
+      DiaChiTiepNhan: 'Quầy tiếp nhận và trả kết quả Sở Giao thông vận tải tại Trung tâm Hành chính công tỉnh (thẩm quyền cấp tỉnh)',
+      MaTTHC: '1.001735.000.00.00.H11',
+      TenTTHC: 'Cấp Giấy phép xe tập lái'
+    },
+    {
+      DiaChiTiepNhan: 'Quầy tiếp nhận và trả kết quả Sở Giao thông vận tải tại Trung tâm Hành chính công tỉnh (thẩm quyền cấp tỉnh)',
+      MaTTHC: '1.001751.000.00.00.H11',
+      TenTTHC: 'Cấp lại Giấy phép xe tập lái'
+    },
+    {
+      DiaChiTiepNhan: 'Quầy tiếp nhận và trả kết quả của Sở Giao thông vận tải tại Trung tâm Hành chính công tỉnh. Số 24, đường Nguyễn Tất Thành, thành phố Phan Thiết, tỉnh Bình Thuận.',
+      MaTTHC: '1.001777.000.00.00.H11',
+      TenTTHC: 'Cấp giấy phép đào tạo lái xe ô tô'
+    },
+    {
+      DiaChiTiepNhan: 'Quầy tiếp nhận và trả kết quả của Sở Giao thông vận tải tại Trung tâm Hành chính công tỉnh. Số 24, đường Nguyễn Tất Thành, thành phố Phan Thiết, tỉnh Bình Thuận.',
+      MaTTHC: '1.002300.000.00.00.H11',
+      TenTTHC: 'Cấp lại Giấy phép lái xe quốc tế'
+    },
+    {
+      DiaChiTiepNhan: 'Quầy tiếp nhận và trả kết quả của Sở Giao thông vận tải tại Trung tâm Hành chính công tỉnh. Số 24, đường Nguyễn Tất Thành, thành phố Phan Thiết, tỉnh Bình Thuận.',
+      MaTTHC: '1.002793.000.00.00.H11',
+      TenTTHC: 'Đổi Giấy phép lái xe hoặc bằng lái xe của nước ngoài cấp cho khách du lịch nước ngoài lái xe vào Việt Nam'
+    },
+    {
+      DiaChiTiepNhan: 'Quầy tiếp nhận và trả kết quả của Sở Giao thông vận tải tại Trung tâm Hành chính công tỉnh. Số 24, đường Nguyễn Tất Thành, thành phố Phan Thiết, tỉnh Bình Thuận.',
+      MaTTHC: '1.002801.000.00.00.H11',
+      TenTTHC: 'Đổi giấy phép lái xe do ngành Công an cấp'
+    },
+    {
+      DiaChiTiepNhan: 'Quầy tiếp nhận và trả kết quả của Sở Giao thông vận tải tại Trung tâm Hành chính công tỉnh. Số 24, đường Nguyễn Tất Thành, thành phố Phan Thiết, tỉnh Bình Thuận.',
+      MaTTHC: '1.002804.000.00.00.H11',
+      TenTTHC: 'Đổi Giấy phép lái xe quân sự do Bộ Quốc phòng cấp'
+    },
+    {
+      DiaChiTiepNhan: 'Quầy tiếp nhận và trả kết quả của Sở Giao thông vận tải tại Trung tâm Hành chính công tỉnh. Số 24, đường Nguyễn Tất Thành, thành phố Phan Thiết, tỉnh Bình Thuận.',
+      MaTTHC: '1.002820.000.00.00.H11',
+      TenTTHC: 'Cấp lại Giấy phép lái xe'
+    },
+    {
+      DiaChiTiepNhan: 'Quầy tiếp nhận và trả kết quả của Sở Giao thông vận tải tại Trung tâm Hành chính công tỉnh. Số 24, đường Nguyễn Tất Thành, thành phố Phan Thiết, tỉnh Bình Thuận.',
+      MaTTHC: '1.002835.000.00.00.H11',
+      TenTTHC: 'Cấp mới Giấy phép lái xe'
+    },
+    {
+      DiaChiTiepNhan: 'Quầy tiếp nhận và trả kết quả của Sở Giao thông vận tải tại Trung tâm Hành chính công tỉnh. Số 24, đường Nguyễn Tất Thành, thành phố Phan Thiết, tỉnh Bình Thuận.',
+      MaTTHC: '2.001002.000.00.00.H11',
+      TenTTHC: 'Cấp Giấy phép lái xe quốc tế'
+    }
+  ],
+  { count: 10, type: 'tentthc' }
+]
+[
+  {
+    DiaChiTiepNhan: 'Quầy tiếp nhận và trả kết quả Sở Giao thông vận tải tại Trung tâm Hành chính công tỉnh (thẩm quyền cấp tỉnh)',
+    MaTTHC: '1.001735.000.00.00.H11',
+    TenTTHC: 'Cấp Giấy phép xe tập lái'
+  },
+  {
+    DiaChiTiepNhan: 'Quầy tiếp nhận và trả kết quả Sở Giao thông vận tải tại Trung tâm Hành chính công tỉnh (thẩm quyền cấp tỉnh)',
+    MaTTHC: '1.001751.000.00.00.H11',
+    TenTTHC: 'Cấp lại Giấy phép xe tập lái'
+  },
+  {
+    DiaChiTiepNhan: 'Quầy tiếp nhận và trả kết quả của Sở Giao thông vận tải tại Trung tâm Hành chính công tỉnh. Số 24, đường Nguyễn Tất Thành, thành phố Phan Thiết, tỉnh Bình Thuận.',
+    MaTTHC: '1.001777.000.00.00.H11',
+    TenTTHC: 'Cấp giấy phép đào tạo lái xe ô tô'
+  },
+  {
+    DiaChiTiepNhan: 'Quầy tiếp nhận và trả kết quả của Sở Giao thông vận tải tại Trung tâm Hành chính công tỉnh. Số 24, đường Nguyễn Tất Thành, thành phố Phan Thiết, tỉnh Bình Thuận.',
+    MaTTHC: '1.002300.000.00.00.H11',
+    TenTTHC: 'Cấp lại Giấy phép lái xe quốc tế'
+  },
+  {
+    DiaChiTiepNhan: 'Quầy tiếp nhận và trả kết quả của Sở Giao thông vận tải tại Trung tâm Hành chính công tỉnh. Số 24, đường Nguyễn Tất Thành, thành phố Phan Thiết, tỉnh Bình Thuận.',
+    MaTTHC: '1.002793.000.00.00.H11',
+    TenTTHC: 'Đổi Giấy phép lái xe hoặc bằng lái xe của nước ngoài cấp cho khách du lịch nước ngoài lái xe vào Việt Nam'
+  },
+  {
+    DiaChiTiepNhan: 'Quầy tiếp nhận và trả kết quả của Sở Giao thông vận tải tại Trung tâm Hành chính công tỉnh. Số 24, đường Nguyễn Tất Thành, thành phố Phan Thiết, tỉnh Bình Thuận.',
+    MaTTHC: '1.002801.000.00.00.H11',
+    TenTTHC: 'Đổi giấy phép lái xe do ngành Công an cấp'
+  },
+  {
+    DiaChiTiepNhan: 'Quầy tiếp nhận và trả kết quả của Sở Giao thông vận tải tại Trung tâm Hành chính công tỉnh. Số 24, đường Nguyễn Tất Thành, thành phố Phan Thiết, tỉnh Bình Thuận.',
+    MaTTHC: '1.002804.000.00.00.H11',
+    TenTTHC: 'Đổi Giấy phép lái xe quân sự do Bộ Quốc phòng cấp'
+  },
+  {
+    DiaChiTiepNhan: 'Quầy tiếp nhận và trả kết quả của Sở Giao thông vận tải tại Trung tâm Hành chính công tỉnh. Số 24, đường Nguyễn Tất Thành, thành phố Phan Thiết, tỉnh Bình Thuận.',
+    MaTTHC: '1.002820.000.00.00.H11',
+    TenTTHC: 'Cấp lại Giấy phép lái xe'
+  },
+  {
+    DiaChiTiepNhan: 'Quầy tiếp nhận và trả kết quả của Sở Giao thông vận tải tại Trung tâm Hành chính công tỉnh. Số 24, đường Nguyễn Tất Thành, thành phố Phan Thiết, tỉnh Bình Thuận.',
+    MaTTHC: '1.002835.000.00.00.H11',
+    TenTTHC: 'Cấp mới Giấy phép lái xe'
+  },
+  {
+    DiaChiTiepNhan: 'Quầy tiếp nhận và trả kết quả của Sở Giao thông vận tải tại Trung tâm Hành chính công tỉnh. Số 24, đường Nguyễn Tất Thành, thành phố Phan Thiết, tỉnh Bình Thuận.',
+    MaTTHC: '2.001002.000.00.00.H11',
+    TenTTHC: 'Cấp Giấy phép lái xe quốc tế'
+  }
+]
+{
+  type: 'message_received',
+  tthc_id: '1.002835.000.00.00.H11',
+  tthc_name: 'Cấp mới Giấy phép lái xe',
+  select: true,
+  raw_message: {
+    type: 'message',
+    tthc_id: '1.002835.000.00.00.H11',
+    tthc_name: 'Cấp mới Giấy phép lái xe',
+    select: true
+  },
+  _pipeline: { stage: 'receive' }
+}
+{
+  type: 'message_received',
+  text: 'thủ tục này tốn bao nhiêu tiền',
+  tthc_id: '1.002835.000.00.00.H11',
+  user: 'b022bb19-6bc3-31a0-e00e-af90be621c01',
+  channel: 'socket',
+  raw_message: {
+    type: 'message',
+    text: 'thủ tục này tốn bao nhiêu tiền',
+    tthc_id: '1.002835.000.00.00.H11',
+    user: 'b022bb19-6bc3-31a0-e00e-af90be621c01',
+    channel: 'socket'
+  },
+  _pipeline: { stage: 'receive' }
+}
+{
+  type: 'message_received',
+  text: 'thủ tục này tốn bao nhiêu tiền',
+  tthc_id: '1.002835.000.00.00.H11',
+  user: 'b022bb19-6bc3-31a0-e00e-af90be621c01',
+  channel: 'socket',
+  raw_message: {
+    type: 'message',
+    text: 'thủ tục này tốn bao nhiêu tiền',
+    tthc_id: '1.002835.000.00.00.H11',
+    user: 'b022bb19-6bc3-31a0-e00e-af90be621c01',
+    channel: 'socket'
+  },
+  _pipeline: { stage: 'receive' }
+}
+[
+  [
+    {
+      MoTa: '',
+      SoTien: '- Phí sát hạch lái xe: + Đối với thi sát hạch lái xe mô tô (hạng xe A1, A2, A3, A4): sát hạch lý thuyết: 40.000đ/lần; sát hạch thực hành: 50.000đ/lần. + Đối với thi sát hạch lái xe ô tô (hạng xe B1, B2, C, D, E, F): sát hạch lý thuyết: 90.000đ/lần; sát hạch trong hình: 300.000 đ/lần; sát hạch trên đường giao thông công cộng: 60.000 đ/lần.'
+    },
+    { MoTa: '', SoTien: '135.000 đ/lần' }
+  ],
+  { count: 2, type: 'chiphi' }
+]
+{
+  type: 'message_received',
+  text: 'tôi muốn tìm hiểu thủ tục hành chính sở thông tin và truyền thông',
+  tthc_id: null,
+  user: '95ef6eca-ac80-ab46-24f2-ca6f39168faa',
+  channel: 'socket',
+  raw_message: {
+    type: 'message',
+    text: 'tôi muốn tìm hiểu thủ tục hành chính sở thông tin và truyền thông',
+    tthc_id: null,
+    user: '95ef6eca-ac80-ab46-24f2-ca6f39168faa',
+    channel: 'socket'
+  },
+  _pipeline: { stage: 'receive' }
+}
+{
+  type: 'message_received',
+  text: 'tôi muốn tìm hiểu thủ tục hành chính sở thông tin và truyền thông',
+  tthc_id: null,
+  user: '95ef6eca-ac80-ab46-24f2-ca6f39168faa',
+  channel: 'socket',
+  raw_message: {
+    type: 'message',
+    text: 'tôi muốn tìm hiểu thủ tục hành chính sở thông tin và truyền thông',
+    tthc_id: null,
+    user: '95ef6eca-ac80-ab46-24f2-ca6f39168faa',
+    channel: 'socket'
+  },
+  _pipeline: { stage: 'receive' }
+}
+[
+  [
+    {
+      DiaChiTiepNhan: 'Quầy “Tiếp nhận và trả kết quả” của Sở Tư pháp tại Trung tâm hành chính công tỉnh. Địa chỉ số 24 Nguyễn Tất Thành, Phan Thiết, Bình Thuận',
+      MaTTHC: '1.001600.000.00.00.H11',
+      TenTTHC: 'Thay đổi thông tin đăng ký hành nghề của doanh nghiệp quản lý, thanh lý tài sản'
+    },
+    {
+      DiaChiTiepNhan: 'Quầy “Tiếp nhận và trả kết quả” của Sở Tư pháp tại Trung tâm hành chính công tỉnh. Địa chỉ số 24 Nguyễn Tất Thành, Phan Thiết, Bình Thuận',
+      MaTTHC: '1.001633.000.00.00.H11',
+      TenTTHC: 'Thay đổi thông tin đăng ký hành nghề của Quản tài viên'
+    },
+    {
+      DiaChiTiepNhan: 'Quầy Sở Tài nguyên và Môi trường tại Trung tâm HCC tỉnh',
+      MaTTHC: '1.001923.000.00.00.H11',
+      TenTTHC: 'Cung cấp thông tin, dữ liệu đo đạc và bản đồ cấp tỉnh'
+    },
+    {
+      DiaChiTiepNhan: 'Quầy tiếp nhận và trả kết quả Sở Lao động – Thương binh và Xã hội tại Trung tâm Hành chính công tỉnh. Số 24, đường Nguyễn Tất Thành, thành phố Phan Thiết, tỉnh Bình Thuận.',
+      MaTTHC: '1.003025.000.00.00.H11',
+      TenTTHC: 'Thủ tục đính chính thông tin trên bia mộ liệt sĩ'
+    },
+    {
+      DiaChiTiepNhan: 'Quầy tiếp nhận và trả kết quả Sở Tài nguyên và Môi trường tại Trung tâm Hành chính công tỉnh. Số 24, đường Nguyễn Tất Thành, thành phố Phan Thiết, tỉnh Bình Thuận',
+      MaTTHC: '1.004237.000.00.00.H11',
+      TenTTHC: 'Khai thác và sử dụng thông tin, dữ liệu tài nguyên và môi trường (cấp tỉnh)'
+    },
+    {
+      DiaChiTiepNhan: 'Bộ phận Một cửa UBND cấp xã',
+      MaTTHC: '1.004859.000.00.00.H11',
+      TenTTHC: 'Thủ tục thay đổi, cải chính, bổ sung thông tin hộ tịch'
+    },
+    {
+      DiaChiTiepNhan: 'Quầy tiếp nhận và trả kết quả Sở Thông tin và Truyền thông (Quầy Tổng hợp) tại Trung tâm Hành chính công tỉnh. Số 24, đường Nguyễn Tất Thành, thành phố Phan Thiết, tỉnh Bình Thuận.',
+      MaTTHC: '2.001737.000.00.00.H11',
+      TenTTHC: 'Thay đổi thông tin đăng ký hoạt động cơ sở in'
+    },
+    {
+      DiaChiTiepNhan: 'Bộ phận Một cửa Ủy ban nhân dân cấp huyện',
+      MaTTHC: '2.001762.000.00.00.H11',
+      TenTTHC: 'Thay đổi thông tin khai báo hoạt động cơ sở dịch vụ photocopy (cấp huyện)'
+    },
+    {
+      DiaChiTiepNhan: 'Quầy tiếp nhận và trả kết quả Sở Thông tin và Truyền thông (Quầy Tổng hợp) tại Trung tâm Hành chính công tỉnh. Số 24, đường Nguyễn Tất Thành, thành phố Phan Thiết, tỉnh Bình Thuận.',
+      MaTTHC: '2.001766.000.00.00.H11',
+      TenTTHC: 'Thông báo thay đổi chủ sở hữu, địa chỉ trụ sở chính của tổ chức, doanh nghiệp đã được cấp Giấy phép thiết lập trang thông tin điện tử tổng hợp'
+    },
+    {
+      DiaChiTiepNhan: 'Quầy tiếp nhận và trả kết quả giải quyết thủ tục hành chính Sở Kế hoạch và Đầu tư tại Trung tâm hành chính công tỉnh. Địa chỉ số 24 Nguyễn Tất Thành, Phan Thiết, Bình Thuận',
+      MaTTHC: '2.002016.000.00.00.H11',
+      TenTTHC: 'Hiệu đính thông tin đăng ký doanh nghiệp'
+    }
+  ],
+  { count: 10, type: 'tentthc' }
+]
+[
+  {
+    DiaChiTiepNhan: 'Quầy “Tiếp nhận và trả kết quả” của Sở Tư pháp tại Trung tâm hành chính công tỉnh. Địa chỉ số 24 Nguyễn Tất Thành, Phan Thiết, Bình Thuận',
+    MaTTHC: '1.001600.000.00.00.H11',
+    TenTTHC: 'Thay đổi thông tin đăng ký hành nghề của doanh nghiệp quản lý, thanh lý tài sản'
+  },
+  {
+    DiaChiTiepNhan: 'Quầy “Tiếp nhận và trả kết quả” của Sở Tư pháp tại Trung tâm hành chính công tỉnh. Địa chỉ số 24 Nguyễn Tất Thành, Phan Thiết, Bình Thuận',
+    MaTTHC: '1.001633.000.00.00.H11',
+    TenTTHC: 'Thay đổi thông tin đăng ký hành nghề của Quản tài viên'
+  },
+  {
+    DiaChiTiepNhan: 'Quầy Sở Tài nguyên và Môi trường tại Trung tâm HCC tỉnh',
+    MaTTHC: '1.001923.000.00.00.H11',
+    TenTTHC: 'Cung cấp thông tin, dữ liệu đo đạc và bản đồ cấp tỉnh'
+  },
+  {
+    DiaChiTiepNhan: 'Quầy tiếp nhận và trả kết quả Sở Lao động – Thương binh và Xã hội tại Trung tâm Hành chính công tỉnh. Số 24, đường Nguyễn Tất Thành, thành phố Phan Thiết, tỉnh Bình Thuận.',
+    MaTTHC: '1.003025.000.00.00.H11',
+    TenTTHC: 'Thủ tục đính chính thông tin trên bia mộ liệt sĩ'
+  },
+  {
+    DiaChiTiepNhan: 'Quầy tiếp nhận và trả kết quả Sở Tài nguyên và Môi trường tại Trung tâm Hành chính công tỉnh. Số 24, đường Nguyễn Tất Thành, thành phố Phan Thiết, tỉnh Bình Thuận',
+    MaTTHC: '1.004237.000.00.00.H11',
+    TenTTHC: 'Khai thác và sử dụng thông tin, dữ liệu tài nguyên và môi trường (cấp tỉnh)'
+  },
+  {
+    DiaChiTiepNhan: 'Bộ phận Một cửa UBND cấp xã',
+    MaTTHC: '1.004859.000.00.00.H11',
+    TenTTHC: 'Thủ tục thay đổi, cải chính, bổ sung thông tin hộ tịch'
+  },
+  {
+    DiaChiTiepNhan: 'Quầy tiếp nhận và trả kết quả Sở Thông tin và Truyền thông (Quầy Tổng hợp) tại Trung tâm Hành chính công tỉnh. Số 24, đường Nguyễn Tất Thành, thành phố Phan Thiết, tỉnh Bình Thuận.',
+    MaTTHC: '2.001737.000.00.00.H11',
+    TenTTHC: 'Thay đổi thông tin đăng ký hoạt động cơ sở in'
+  },
+  {
+    DiaChiTiepNhan: 'Bộ phận Một cửa Ủy ban nhân dân cấp huyện',
+    MaTTHC: '2.001762.000.00.00.H11',
+    TenTTHC: 'Thay đổi thông tin khai báo hoạt động cơ sở dịch vụ photocopy (cấp huyện)'
+  },
+  {
+    DiaChiTiepNhan: 'Quầy tiếp nhận và trả kết quả Sở Thông tin và Truyền thông (Quầy Tổng hợp) tại Trung tâm Hành chính công tỉnh. Số 24, đường Nguyễn Tất Thành, thành phố Phan Thiết, tỉnh Bình Thuận.',
+    MaTTHC: '2.001766.000.00.00.H11',
+    TenTTHC: 'Thông báo thay đổi chủ sở hữu, địa chỉ trụ sở chính của tổ chức, doanh nghiệp đã được cấp Giấy phép thiết lập trang thông tin điện tử tổng hợp'
+  },
+  {
+    DiaChiTiepNhan: 'Quầy tiếp nhận và trả kết quả giải quyết thủ tục hành chính Sở Kế hoạch và Đầu tư tại Trung tâm hành chính công tỉnh. Địa chỉ số 24 Nguyễn Tất Thành, Phan Thiết, Bình Thuận',
+    MaTTHC: '2.002016.000.00.00.H11',
+    TenTTHC: 'Hiệu đính thông tin đăng ký doanh nghiệp'
+  }
+]
+{
+  type: 'message_received',
+  tthc_id: '1.001923.000.00.00.H11',
+  tthc_name: 'Cung cấp thông tin, dữ liệu đo đạc và bản đồ cấp tỉnh',
+  select: true,
+  raw_message: {
+    type: 'message',
+    tthc_id: '1.001923.000.00.00.H11',
+    tthc_name: 'Cung cấp thông tin, dữ liệu đo đạc và bản đồ cấp tỉnh',
+    select: true
+  },
+  _pipeline: { stage: 'receive' }
+}
+{
+  type: 'message_received',
+  text: 'thời gian thực hiện',
+  tthc_id: '1.001923.000.00.00.H11',
+  user: '95ef6eca-ac80-ab46-24f2-ca6f39168faa',
+  channel: 'socket',
+  raw_message: {
+    type: 'message',
+    text: 'thời gian thực hiện',
+    tthc_id: '1.001923.000.00.00.H11',
+    user: '95ef6eca-ac80-ab46-24f2-ca6f39168faa',
+    channel: 'socket'
+  },
+  _pipeline: { stage: 'receive' }
+}
+{
+  type: 'message_received',
+  text: 'thời gian thực hiện',
+  tthc_id: '1.001923.000.00.00.H11',
+  user: '95ef6eca-ac80-ab46-24f2-ca6f39168faa',
+  channel: 'socket',
+  raw_message: {
+    type: 'message',
+    text: 'thời gian thực hiện',
+    tthc_id: '1.001923.000.00.00.H11',
+    user: '95ef6eca-ac80-ab46-24f2-ca6f39168faa',
+    channel: 'socket'
+  },
+  _pipeline: { stage: 'receive' }
+}
+[
+  [
+    {
+      DonViTinh: 'Khác',
+      MoTa: 'Ngay trong ngày làm việc hoặc theo thời gian thống nhất với bên yêu cầu cung cấp.',
+      ThoiGianGiaiQuyet: 'Tùy theo trường hợp khai thác dữ liệu'
+    },
+    {
+      DonViTinh: 'Khác',
+      MoTa: 'Ngay trong ngày làm việc hoặc theo thời gian thống nhất với bên yêu cầu cung cấp.',
+      ThoiGianGiaiQuyet: 'Tùy theo trường hợp khai thác dữ liệu'
+    },
+    {
+      DonViTinh: 'Khác',
+      MoTa: 'Ngay trong ngày làm việc hoặc theo thời gian thống nhất với bên yêu cầu cung cấp.',
+      ThoiGianGiaiQuyet: 'Tùy theo trường hợp khai thác dữ liệu'
+    }
+  ],
+  { count: 3, type: 'thoigian' }
+]
+{
+  type: 'message_received',
+  text: 'bao lâu',
+  tthc_id: '1.001923.000.00.00.H11',
+  user: '95ef6eca-ac80-ab46-24f2-ca6f39168faa',
+  channel: 'socket',
+  raw_message: {
+    type: 'message',
+    text: 'bao lâu',
+    tthc_id: '1.001923.000.00.00.H11',
+    user: '95ef6eca-ac80-ab46-24f2-ca6f39168faa',
+    channel: 'socket'
+  },
+  _pipeline: { stage: 'receive' }
+}
+{
+  type: 'message_received',
+  text: 'bao lâu',
+  tthc_id: '1.001923.000.00.00.H11',
+  user: '95ef6eca-ac80-ab46-24f2-ca6f39168faa',
+  channel: 'socket',
+  raw_message: {
+    type: 'message',
+    text: 'bao lâu',
+    tthc_id: '1.001923.000.00.00.H11',
+    user: '95ef6eca-ac80-ab46-24f2-ca6f39168faa',
+    channel: 'socket'
+  },
+  _pipeline: { stage: 'receive' }
+}
+[
+  [
+    {
+      DonViTinh: 'Khác',
+      MoTa: 'Ngay trong ngày làm việc hoặc theo thời gian thống nhất với bên yêu cầu cung cấp.',
+      ThoiGianGiaiQuyet: 'Tùy theo trường hợp khai thác dữ liệu'
+    },
+    {
+      DonViTinh: 'Khác',
+      MoTa: 'Ngay trong ngày làm việc hoặc theo thời gian thống nhất với bên yêu cầu cung cấp.',
+      ThoiGianGiaiQuyet: 'Tùy theo trường hợp khai thác dữ liệu'
+    },
+    {
+      DonViTinh: 'Khác',
+      MoTa: 'Ngay trong ngày làm việc hoặc theo thời gian thống nhất với bên yêu cầu cung cấp.',
+      ThoiGianGiaiQuyet: 'Tùy theo trường hợp khai thác dữ liệu'
+    }
+  ],
+  { count: 3, type: 'thoigian' }
+]
+{
+  type: 'message_received',
+  text: 'kết quả thực hiện',
+  tthc_id: '1.001923.000.00.00.H11',
+  user: '95ef6eca-ac80-ab46-24f2-ca6f39168faa',
+  channel: 'socket',
+  raw_message: {
+    type: 'message',
+    text: 'kết quả thực hiện',
+    tthc_id: '1.001923.000.00.00.H11',
+    user: '95ef6eca-ac80-ab46-24f2-ca6f39168faa',
+    channel: 'socket'
+  },
+  _pipeline: { stage: 'receive' }
+}
+{
+  type: 'message_received',
+  text: 'kết quả thực hiện',
+  tthc_id: '1.001923.000.00.00.H11',
+  user: '95ef6eca-ac80-ab46-24f2-ca6f39168faa',
+  channel: 'socket',
+  raw_message: {
+    type: 'message',
+    text: 'kết quả thực hiện',
+    tthc_id: '1.001923.000.00.00.H11',
+    user: '95ef6eca-ac80-ab46-24f2-ca6f39168faa',
+    channel: 'socket'
+  },
+  _pipeline: { stage: 'receive' }
+}
+[
+  [
+    {
+      TenKetQua: 'Thông tin, dữ liệu, sản phẩm đo đạc và bản đồ dưới dạng bản sao hoặc xuất bản phẩm (thông tin, dữ liệu, sản phẩm đo đạc và bản đồ dưới dạng bản sao phải được xác nhận nguồn gốc theo Mẫu số 07 Phụ lục I Nghị định số 27/2019/NĐ-CP).'
+    }
+  ],
+  { count: 1, type: 'ketqua' }
+]

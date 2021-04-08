@@ -397,7 +397,7 @@ module.exports = function (controller) {
         var id = message.user;
         
         var raw_mesg = message.text
-    if (new RegExp(['tks','thanks','thank','cảm ơn','cam on','cảm ơn bạn', 'Cảm ơn', 'bye'].join("|")).test(message.text.toLowerCase())) {
+    if (new RegExp(['tks','thanks','thank','cảm ơn','cam on','cảm ơn bạn', 'Cảm ơn', 'bye'].join("|")).test(message.text?message.text.toLowerCase():message.text)) {
     bot.reply(message,{text:'Cảm ơn bạn. Hẹn gặp lại!',goodbye: true})    
     return;
     }
